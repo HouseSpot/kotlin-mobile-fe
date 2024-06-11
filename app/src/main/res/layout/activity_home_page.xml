@@ -74,6 +74,7 @@
         tools:layout_editor_absoluteY="356dp" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvJasa"
         android:layout_width="409dp"
         android:layout_height="355dp"
         tools:layout_editor_absoluteX="1dp"
