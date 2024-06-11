@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".account.AccountHomepageActivity">
+
+    <View
+        android:id="@+id/rectangle_4"
+        android:layout_width="417dp"
+        android:layout_height="200dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="#86C5FF"
+        tools:layout_editor_absoluteX="-1dp" />
+
+
+    <RelativeLayout
+        android:id="@+id/star"
+        android:layout_width="300dp"
+        android:layout_height="250dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="300dp"
+        android:background="@drawable/card_to_rumah123"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/addStory"
+            android:layout_width="275dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="190dp"
+            android:text="Lihat Properti"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.454"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </RelativeLayout>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp"
+        app:cardMaxElevation="10dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        tools:layout_editor_absoluteX="30dp"
+        tools:layout_editor_absoluteY="136dp">
+
+        <!-- In the above cardview widget cardelevation property will give elevation to your card view
+            card corner radius will provide radius to your card view card background color will give
+            background color to your card view card max elevation will give the cardview maximum
+            elevation card prevent corner overlap will add padding to CardView on v20 and before to
+            prevent intersections between the Card content and rounded corners. Card use compact padding
+            will add padding in API v21+ as well to have the same measurements with previous versions -->
+
+        <RelativeLayout
+            android:layout_width="350dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/author"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="20dp"
+                android:text="Estimasi Harga Properti"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="30dp"
+                android:text="Rp.200.000,-"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+            />
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

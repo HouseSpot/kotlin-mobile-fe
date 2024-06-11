@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".layananjasa.FormPesananActivity">
+
+    <RelativeLayout
+        android:id="@+id/star"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="360dp"
+            android:layout_height="600dp"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Layanan apa yang anda butuhkan?"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+
+            <CheckBox
+                android:id="@+id/checkbox_cheese"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:text="Renovasi" />
+
+            <CheckBox
+                android:id="@+id/checkbox_meat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:text="Bangun dari awal" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Apa jenis properti anda?"
+                android:textColor="@color/black"
+                android:padding="12dp"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/jenisProperti"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:hint="Enter you poll title..."
+                android:padding="12dp"
+                android:textSize="12sp"
+                android:background="@drawable/rounded_border" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Berapa budget total untuk layanan ini?"
+                android:textColor="@color/black"
+                android:padding="12dp"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/biaya"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:hint="Enter you poll title..."
+                android:padding="12dp"
+                android:textSize="12sp"
+                android:background="@drawable/rounded_border" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kapan Anda membutuhkan layanan?"
+                android:textColor="@color/black"
+                android:padding="12dp"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/waktuMulai"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:hint="Enter you poll title..."
+                android:padding="12dp"
+                android:textSize="12sp"
+                android:background="@drawable/rounded_border" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kapan Anda ingin layanan ini selesai?"
+                android:textColor="@color/black"
+                android:padding="12dp"
+                android:textSize="14sp" />
+            <EditText
+                android:id="@+id/waktuSelesai"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:hint="Enter you poll title..."
+                android:padding="12dp"
+                android:textSize="12sp"
+                android:background="@drawable/rounded_border" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Deskripsikan secara lebih lengkap tentang proyek Anda?"
+                android:textColor="@color/black"
+                android:padding="12dp"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/deskripsi"
+                android:layout_width="360dp"
+                android:layout_height="74dp"
+                android:background="@drawable/rounded_border"
+                android:hint="Enter you poll title..."
+                android:padding="12dp"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Siapa yang akan menyediakan material konstruksi?"
+                android:textColor="@color/black"
+                android:padding="12dp"
+                android:textSize="14sp" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <RadioButton android:id="@+id/radio_pirates"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="Kontraktor"/>
+                <RadioButton android:id="@+id/radio_ninjas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="Saya"/>
+            </RadioGroup>
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/addStory"
+        android:layout_width="361dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:text="Pesan Layanan"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

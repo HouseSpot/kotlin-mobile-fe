@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".homepage.HomePageActivity">
+
+    <View
+        android:id="@+id/rectangle_4"
+        android:layout_width="413dp"
+        android:layout_height="141dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="#86C5FF" />
+
+    <View
+        android:id="@+id/ellipse_124"
+        android:layout_width="45dp"
+        android:layout_height="46dp"
+        android:background="#FFFFFF"
+        tools:layout_editor_absoluteX="42dp"
+        tools:layout_editor_absoluteY="56dp" />
+
+    <TextView
+        android:id="@+id/ayo_temukan"
+        android:layout_width="254dp"
+        android:layout_height="18dp"
+        android:gravity="center_vertical"
+        android:lineSpacingExtra="1sp"
+        android:text="Ayo, temukan dan jaga properti milikmu!"
+        tools:layout_editor_absoluteX="107dp"
+        tools:layout_editor_absoluteY="84dp" />
+
+    <RelativeLayout
+        android:id="@+id/icon_fitur_prediksi"
+        android:layout_width="150dp"
+        android:layout_height="102dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="216dp"
+        android:background="@drawable/icon_fitur_prediksi"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/layanan"
+        android:layout_width="55dp"
+        android:layout_height="18dp"
+        android:gravity="center_vertical"
+        android:lineSpacingExtra="1sp"
+        android:text="Layanan"
+        tools:layout_editor_absoluteX="52dp"
+        tools:layout_editor_absoluteY="185dp" />
+
+    <RelativeLayout
+        android:id="@+id/fitur_jasa"
+        android:layout_width="150dp"
+        android:layout_height="102dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="0dp"
+        android:background="@drawable/fitur_jasa"
+        app:layout_constraintStart_toEndOf="@id/icon_fitur_prediksi"
+        app:layout_constraintTop_toTopOf="@id/icon_fitur_prediksi" />
+
+    <TextView
+        android:id="@+id/rekomendasi_jasa"
+        android:layout_width="150dp"
+        android:layout_height="18dp"
+        android:gravity="center_vertical"
+        android:lineSpacingExtra="1sp"
+        android:text="Rekomendasi Jasa"
+        tools:layout_editor_absoluteX="52dp"
+        tools:layout_editor_absoluteY="356dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="409dp"
+        android:layout_height="355dp"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="375dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
