@@ -4,6 +4,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="yellow">#FFFFD700</color>
     <color name="appBarPrimary">#FFFFFFFF</color>
+    <color name="backgroundColor">#FF86C5FF</color>
 
     <color name="colorPrimary">#87CEFA</color>
     <color name="colorPrimaryDark">#4682B4</color>
@@ -11,4 +12,12 @@
     <color name="textColorPrimary">#FFFFFF</color>
     <color name="linkColor">#3B59F1</color>
     <color name="blue">#3B59F1</color>
+
+    <color name="premiumColor">#FFC60A</color>
+    <color name="waitingColor">#EEA02B</color>
+    <color name="ongoingColor">#86C5FF</color>
+    <color name="successColor">#00A86B</color>
+    <color name="dangerColor">#FF0000</color>
+    <color name="warningColor">#FFA500</color>
+    <color name="infoColor">#00BFFF</color>
 </resources>
