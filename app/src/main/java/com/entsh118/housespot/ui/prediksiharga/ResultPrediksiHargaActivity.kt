@@ -1,4 +1,4 @@
-package com.entsh118.housespot.prediksiharga
+package com.entsh118.housespot.ui.prediksiharga
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
