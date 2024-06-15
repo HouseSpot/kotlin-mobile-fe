@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">HouseSpot</string>
+    <string name="housespot">HouseSpot</string>
+    <string name="stay_positive_stay_close_with_quran">Stay Positive, Stay Close With Quran</string>
+    <string name="housespot_logo">HouseSpot Logo</string>
 </resources>
