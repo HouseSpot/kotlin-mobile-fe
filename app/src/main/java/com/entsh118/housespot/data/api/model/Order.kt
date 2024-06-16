@@ -12,5 +12,9 @@ data class Order(
     val endDate: String,
     val budget: Long,
     val status: String
-)
+) {
+    constructor() : this("123", "234", "456",
+        "Project Description", "Service Type", "Property Type",
+        "Material Provider", "Start Date", "End Date", 1000000, "Status")
+}
 

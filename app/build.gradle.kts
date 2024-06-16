@@ -14,7 +14,7 @@ android {
 
     defaultConfig {
         applicationId = "com.entsh118.housespot"
-        minSdk = 24
+        minSdk = 28
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -42,6 +42,7 @@ android {
     buildFeatures {
         compose = true
         viewBinding = true
+        dataBinding = true
         buildConfig = true
         mlModelBinding = true
     }
@@ -73,6 +74,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
 
+    implementation("androidx.datastore:datastore-core:1.0.0")
     implementation("androidx.datastore:datastore-preferences:1.0.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
