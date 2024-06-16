@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.entsh118.housespot.data.api.model.Order
 import com.entsh118.housespot.databinding.ItemOrderBinding
 
-class ActiveOrdersAdapter : ListAdapter<Order, ActiveOrdersAdapter.OrderViewHolder>(OrderDiffCallback()) {
+class ActiveOrdersAdapter(private val onItemClick: (Order) -> Unit) : ListAdapter<Order, ActiveOrdersAdapter.OrderViewHolder>(OrderDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrderViewHolder {
         val binding = ItemOrderBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -16,7 +16,9 @@ class ActiveOrdersAdapter : ListAdapter<Order, ActiveOrdersAdapter.OrderViewHold
     }
 
     override fun onBindViewHolder(holder: OrderViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        val order = getItem(position)
+        holder.bind(order)
+        holder.itemView.setOnClickListener { onItemClick(order) }
     }
 
     class OrderViewHolder(private val binding: ItemOrderBinding) : RecyclerView.ViewHolder(binding.root) {

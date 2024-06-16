@@ -16,7 +16,7 @@ class VendorHomeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // Load profile image dynamically if needed
-        binding.ivProfile.setImageUrl("http://example.com/path/to/image.jpg")
+        // Example: binding.ivProfile.setImageUrl("http://example.com/path/to/image.jpg")
 
         // Load other data and set UI elements accordingly
         binding.tvGreeting.text = "Hallo, Fitira!"

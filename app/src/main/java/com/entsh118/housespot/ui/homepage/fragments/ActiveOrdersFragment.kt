@@ -1,5 +1,6 @@
 package com.entsh118.housespot.ui.homepage.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.entsh118.housespot.databinding.FragmentActiveOrdersBinding
 import com.entsh118.housespot.ui.homepage.adapter.ActiveOrdersAdapter
 import com.entsh118.housespot.ui.homepage.viewmodel.OrdersViewModel
+import com.entsh118.housespot.ui.orderdetails.OrderDetailsActivity
 
 class ActiveOrdersFragment : Fragment() {
 
@@ -34,6 +36,11 @@ class ActiveOrdersFragment : Fragment() {
 
     private fun setupRecyclerView() {
         binding.rvActiveOrders.layoutManager = LinearLayoutManager(requireContext())
-        binding.rvActiveOrders.adapter = ActiveOrdersAdapter()
+        val adapter = ActiveOrdersAdapter { order ->
+            val intent = Intent(requireContext(), OrderDetailsActivity::class.java)
+            intent.putExtra("order_id", order.id)
+            startActivity(intent)
+        }
+        binding.rvActiveOrders.adapter = adapter
     }
 }

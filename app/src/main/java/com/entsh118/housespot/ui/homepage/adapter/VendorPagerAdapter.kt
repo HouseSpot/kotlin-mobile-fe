@@ -18,4 +18,3 @@ class VendorPagerAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdap
         }
     }
 }
-
