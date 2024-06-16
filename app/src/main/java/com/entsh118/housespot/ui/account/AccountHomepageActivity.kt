@@ -1,21 +1,85 @@
 package com.entsh118.housespot.ui.account
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
+import com.bumptech.glide.Glide
 import com.entsh118.housespot.R
+import com.entsh118.housespot.data.api.model.UserPreferences
+import com.entsh118.housespot.databinding.ActivityAccountHomepageBinding
+import com.entsh118.housespot.ui.auth.LoginActivity
+import com.entsh118.housespot.ui.homepage.HomePageActivity
+import com.entsh118.housespot.ui.pesanan.PesananClientActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 class AccountHomepageActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityAccountHomepageBinding
+    private val viewModel: AccountViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_account_homepage)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+        binding = ActivityAccountHomepageBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        // Load user data
+        loadUserData()
+
+        setupBottomNavigation()
+
+        // Set click listeners
+        binding.rlProfile.setOnClickListener {
+            // Handle profile click
+        }
+
+        binding.rlLogout.setOnClickListener {
+            // Handle logout click
+            lifecycleScope.launch {
+                viewModel.logout()
+                startActivity(Intent(this@AccountHomepageActivity, LoginActivity::class.java))
+                finish()
+            }
         }
     }
+
+    private fun loadUserData() {
+        lifecycleScope.launch {
+            viewModel.userPreferencesFlow.collect { user ->
+                user?.let {
+                    binding.userName.text = it.nama
+                    binding.userEmail.text = it.email
+                    Glide.with(this@AccountHomepageActivity)
+                        .load(it.profile)
+                        .circleCrop()
+                        .into(binding.profileImage)
+                }
+            }
+        }
+    }
+
+    private fun setupBottomNavigation() {
+        val bottomNavigationView: BottomNavigationView = binding.bottomNavigation
+        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_home -> {
+                    startActivity(Intent(this, HomePageActivity::class.java))
+                    true
+                }
+                R.id.nav_orders -> {
+                    true
+                }
+                R.id.nav_account -> {
+                    startActivity(Intent(this, AccountHomepageActivity::class.java))
+                    true
+                }
+                else -> false
+            }
+        }
+        bottomNavigationView.selectedItemId = R.id.nav_account
+    }
+
 }

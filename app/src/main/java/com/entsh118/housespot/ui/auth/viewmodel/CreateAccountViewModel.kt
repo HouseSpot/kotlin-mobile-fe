@@ -1,60 +1,78 @@
 package com.entsh118.housespot.ui.auth.viewmodel
 
+import android.util.Log
+import androidx.compose.ui.text.toLowerCase
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.entsh118.housespot.data.api.retrofit.ApiConfig
+import kotlinx.coroutines.launch
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.toRequestBody
+import java.util.Locale
 
 class CreateAccountViewModel : ViewModel() {
 
-    private val _name = MutableLiveData<String>()
-    val name: LiveData<String> get() = _name
+    private val _registrationResult = MutableLiveData<String>()
+    val registrationResult: LiveData<String> get() = _registrationResult
 
-    private val _email = MutableLiveData<String>()
-    val email: LiveData<String> get() = _email
+    private val _isRegistrationSuccess = MutableLiveData<Boolean>()
+    val isRegistrationSuccess: LiveData<Boolean> get() = _isRegistrationSuccess
 
-    private val _password = MutableLiveData<String>()
-    val password: LiveData<String> get() = _password
+    private val _loading = MutableLiveData<Boolean>()
+    val loading: LiveData<Boolean> get() = _loading
 
-    private val _confirmPassword = MutableLiveData<String>()
-    val confirmPassword: LiveData<String> get() = _confirmPassword
+    fun register(
+        name: String,
+        email: String,
+        password: String,
+        confirmPassword: String,
+        role: String,
+        phone: String,
+        profileImage: MultipartBody.Part
+    ) {
+        if (name.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() || phone.isEmpty()) {
+            _registrationResult.value = "Please fill all fields"
+            return
+        }
+        if (password != confirmPassword) {
+            _registrationResult.value = "Passwords do not match"
+            return
+        }
 
-    private val _phone = MutableLiveData<String>()
-    val phone: LiveData<String> get() = _phone
+        _loading.value = true
 
-    private val _isFormValid = MutableLiveData<Boolean>()
-    val isFormValid: LiveData<Boolean> get() = _isFormValid
+        val requestBodyMap = hashMapOf(
+            "email" to email.toRequestBody(MultipartBody.FORM),
+            "nama" to name.toRequestBody(MultipartBody.FORM),
+            "no_hp" to phone.toRequestBody(MultipartBody.FORM),
+            "peran" to (role.lowercase() ?: "").toRequestBody(MultipartBody.FORM),
+            "password" to password.toRequestBody(MultipartBody.FORM),
+            "confirmPassword" to confirmPassword.toRequestBody(MultipartBody.FORM)
+        )
 
-    fun updateName(name: String) {
-        _name.value = name
-        validateForm()
-    }
+        Log.d("CreateAccountViewModel", "register: $requestBodyMap")
 
-    fun updateEmail(email: String) {
-        _email.value = email
-        validateForm()
-    }
-
-    fun updatePassword(password: String) {
-        _password.value = password
-        validateForm()
-    }
-
-    fun updateConfirmPassword(confirmPassword: String) {
-        _confirmPassword.value = confirmPassword
-        validateForm()
-    }
-
-    fun updatePhone(phone: String) {
-        _phone.value = phone
-        validateForm()
-    }
-
-    private fun validateForm() {
-        _isFormValid.value = !(_name.value.isNullOrEmpty() ||
-                _email.value.isNullOrEmpty() ||
-                _password.value.isNullOrEmpty() ||
-                _confirmPassword.value.isNullOrEmpty() ||
-                _phone.value.isNullOrEmpty() ||
-                _password.value != _confirmPassword.value)
+        viewModelScope.launch {
+            try {
+                val response = ApiConfig.getAuthService().register(
+                    requestBodyMap["email"]!!,
+                    requestBodyMap["nama"]!!,
+                    requestBodyMap["no_hp"]!!,
+                    requestBodyMap["peran"]!!,
+                    requestBodyMap["password"]!!,
+                    requestBodyMap["confirmPassword"]!!,
+                    profileImage
+                )
+                _registrationResult.value = response.message ?: "Registration successful"
+                _isRegistrationSuccess.value = true
+            } catch (e: Exception) {
+                _registrationResult.value = e.message ?: "Registration failed"
+                _isRegistrationSuccess.value = false
+            } finally {
+                _loading.value = false
+            }
+        }
     }
 }
