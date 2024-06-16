@@ -33,6 +33,12 @@
         <activity
             android:name=".ui.homepage.HomePageActivity"
             android:exported="false" />
+        <activity
+            android:name=".ui.homepage.VendorHomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.orderdetails.OrderDetailsActivity"
+            android:exported="false" />
 
         <activity android:name=".MainActivity" android:exported="true">
             <intent-filter>
