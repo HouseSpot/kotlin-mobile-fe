@@ -3,4 +3,11 @@
     <string name="housespot">HouseSpot</string>
     <string name="stay_positive_stay_close_with_quran">Stay Positive, Stay Close With Quran</string>
     <string name="housespot_logo">HouseSpot Logo</string>
+
+    <string-array name="status_array">
+        <item>Waiting</item>
+        <item>Ongoing</item>
+        <item>Completed</item>
+        <item>Rejected</item>
+    </string-array>
 </resources>

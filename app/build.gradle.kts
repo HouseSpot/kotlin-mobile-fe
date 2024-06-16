@@ -14,7 +14,7 @@ android {
 
     defaultConfig {
         applicationId = "com.entsh118.housespot"
-        minSdk = 24
+        minSdk = 28
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -42,6 +42,7 @@ android {
     buildFeatures {
         compose = true
         viewBinding = true
+        dataBinding = true
         buildConfig = true
         mlModelBinding = true
     }

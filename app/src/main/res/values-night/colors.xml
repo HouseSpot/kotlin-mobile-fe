@@ -20,4 +20,5 @@
     <color name="dangerColor">#FF0000</color>
     <color name="warningColor">#FFA500</color>
     <color name="infoColor">#00BFFF</color>
+    <color name="whatsapp_green">#00BC4B</color>
 </resources>
