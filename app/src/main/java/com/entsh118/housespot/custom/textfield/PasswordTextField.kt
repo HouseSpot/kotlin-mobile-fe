@@ -19,8 +19,8 @@ class PasswordTextField @JvmOverloads constructor(
     }
 
     override fun validate(s: CharSequence) {
-        if (s.length < 8) {
-            error = "Kata Sandi tidak boleh kurang dari 8 karakter"
+        if (s.length < 5) {
+            error = "Kata Sandi tidak boleh kurang dari 5 karakter"
         }
     }
 }
