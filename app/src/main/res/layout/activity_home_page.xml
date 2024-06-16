@@ -1,82 +1,174 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.homepage.HomePageActivity">
 
-    <View
-        android:id="@+id/rectangle_4"
-        android:layout_width="413dp"
-        android:layout_height="141dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:background="#86C5FF" />
-
-    <View
-        android:id="@+id/ellipse_124"
-        android:layout_width="45dp"
-        android:layout_height="46dp"
-        android:background="#FFFFFF"
-        tools:layout_editor_absoluteX="42dp"
-        tools:layout_editor_absoluteY="56dp" />
-
-    <TextView
-        android:id="@+id/ayo_temukan"
-        android:layout_width="254dp"
-        android:layout_height="18dp"
-        android:gravity="center_vertical"
-        android:lineSpacingExtra="1sp"
-        android:text="Ayo, temukan dan jaga properti milikmu!"
-        tools:layout_editor_absoluteX="107dp"
-        tools:layout_editor_absoluteY="84dp" />
-
     <RelativeLayout
-        android:id="@+id/icon_fitur_prediksi"
-        android:layout_width="150dp"
-        android:layout_height="102dp"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="216dp"
-        android:background="@drawable/icon_fitur_prediksi"
+        android:id="@+id/rl_header"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@color/backgroundColor"
+        android:paddingHorizontal="20dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
+        <com.entsh118.housespot.custom.CustomImageView
+            android:id="@+id/iv_profile"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_vendor"
+            android:contentDescription="Profile Picture"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/tv_project_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_greeting"
+            android:layout_alignStart="@id/tv_greeting"
+            android:layout_marginTop="6dp"
+            android:text="Ayo, temukan &amp; jaga properti milikmu!"
+            android:textColor="@android:color/white"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_greeting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="25dp"
+            android:layout_toEndOf="@id/iv_profile"
+            android:text="Hallo, Fitira!"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/iv_settings"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_settings" />
+    </RelativeLayout>
+
+    <!-- Services Section -->
     <TextView
-        android:id="@+id/layanan"
-        android:layout_width="55dp"
-        android:layout_height="18dp"
-        android:gravity="center_vertical"
-        android:lineSpacingExtra="1sp"
+        android:id="@+id/services_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="Layanan"
-        tools:layout_editor_absoluteX="52dp"
-        tools:layout_editor_absoluteY="185dp" />
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rl_header"
+        android:layout_marginStart="16dp" />
 
-    <RelativeLayout
-        android:id="@+id/fitur_jasa"
-        android:layout_width="150dp"
-        android:layout_height="102dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="0dp"
-        android:background="@drawable/fitur_jasa"
-        app:layout_constraintStart_toEndOf="@id/icon_fitur_prediksi"
-        app:layout_constraintTop_toTopOf="@id/icon_fitur_prediksi" />
+    <LinearLayout
+        android:id="@+id/services_section"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/services_label"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:gravity="center">
 
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@drawable/service_background"
+            android:padding="16dp"
+            android:layout_marginEnd="8dp">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_estimate_value" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:text="Estimasi Nilai\nProperti"
+                android:textSize="14sp"
+                android:textColor="@android:color/black"
+                android:layout_marginTop="8dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@drawable/renovasi_service_background"
+            android:padding="16dp"
+            android:layout_marginStart="8dp">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_renovation" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:text="Bangun &amp; Renovasi\nProperti"
+                android:textSize="14sp"
+                android:textColor="@android:color/black"
+                android:layout_marginTop="8dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Recommendations Section -->
     <TextView
-        android:id="@+id/rekomendasi_jasa"
-        android:layout_width="150dp"
-        android:layout_height="18dp"
-        android:gravity="center_vertical"
-        android:lineSpacingExtra="1sp"
+        android:id="@+id/recommendations_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="Rekomendasi Jasa"
-        tools:layout_editor_absoluteX="52dp"
-        tools:layout_editor_absoluteY="356dp" />
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/services_section"
+        android:layout_marginStart="16dp" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvJasa"
-        android:layout_width="409dp"
-        android:layout_height="355dp"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="375dp" />
+        android:id="@+id/recommendations_recyclerview"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recommendations_label"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:itemIconTint="@color/nav_item_color"
+        app:itemTextColor="@color/nav_item_color"
+        app:menu="@menu/bottom_nav_menu"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
