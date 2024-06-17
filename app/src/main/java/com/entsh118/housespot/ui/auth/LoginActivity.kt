@@ -13,6 +13,8 @@ import androidx.lifecycle.lifecycleScope
 import com.entsh118.housespot.R
 import com.entsh118.housespot.custom.textfield.EmailTextField
 import com.entsh118.housespot.custom.textfield.PasswordTextField
+import com.entsh118.housespot.databinding.ActivityCreateAccountBinding
+import com.entsh118.housespot.databinding.ActivityLoginBinding
 import com.entsh118.housespot.ui.auth.viewmodel.LoginViewModel
 import com.entsh118.housespot.ui.homepage.HomePageActivity
 import com.entsh118.housespot.ui.homepage.VendorHomeActivity
@@ -24,22 +26,22 @@ import kotlinx.coroutines.launch
 class LoginActivity : AppCompatActivity() {
 
     private val loginViewModel: LoginViewModel by viewModels()
+    private lateinit var binding: ActivityLoginBinding
 
     private lateinit var etEmail: EmailTextField
     private lateinit var etPassword: PasswordTextField
     private lateinit var btnLogin: MaterialButton
-    private lateinit var progressIndicator: CircularProgressIndicator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         setupToolbar()
 
         etEmail = findViewById(R.id.etEmail)
         etPassword = findViewById(R.id.etPassword)
         btnLogin = findViewById(R.id.btnLogin)
-        progressIndicator = findViewById(R.id.progressIndicator)
 
         btnLogin.setOnClickListener {
             val email = etEmail.text.toString()
@@ -54,9 +56,9 @@ class LoginActivity : AppCompatActivity() {
 
         loginViewModel.loading.observe(this, Observer { isLoading ->
             if (isLoading) {
-                progressIndicator.visibility = View.VISIBLE
+                binding.progressIndicator.visibility = View.VISIBLE
             } else {
-                progressIndicator.visibility = View.GONE
+                binding.progressIndicator.visibility = View.GONE
             }
         })
 
