@@ -34,7 +34,7 @@ data class VendorResponseItem(
 	val profile: String? = null,
 
 	@field:SerializedName("rating")
-	val rating: Integer? = null,
+	val rating: Float? = null,
 
 	@field:SerializedName("deskripsi_layanan")
 	val deskripsiLayanan: String? = null,

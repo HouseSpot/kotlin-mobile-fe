@@ -1,5 +1,6 @@
 package com.entsh118.housespot.ui.layananjasa
 
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -22,17 +23,20 @@ class ListVendorActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityListVendorBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.rvListVendor.layoutManager = LinearLayoutManager(this) // tambahkan ini
+
 
         viewModel = ViewModelProvider(this, ViewModelFactory())[
             ListVendorViewModel::class.java]
 
         viewModel.listVendor.observe(this) { listVendor -> setListVendorData(listVendor) }
-        Log.e("FITUR LIST VENDOR","AFTER FETCH")
     }
 
     private fun setListVendorData(listVendor: List<VendorResponseItem>) {
-        Log.e("FITUR LIST VENDOR","ADAPTER")
+        Log.e("CEK LIST",listVendor[0].toString())
         val adapter = ListVendorAdapter(listVendor)
+        Log.e("CEK LIST count di adapter", adapter.itemCount.toString())
         binding.rvListVendor.adapter = adapter
+        adapter.notifyDataSetChanged()
     }
 }

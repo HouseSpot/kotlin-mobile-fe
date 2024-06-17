@@ -20,6 +20,6 @@
         android:id="@+id/rv_list_vendor"
         android:layout_width="410dp"
         android:layout_height="656dp"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="75dp" />
+        tools:layout_editor_absoluteX="match_parent"
+        tools:layout_editor_absoluteY="80dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

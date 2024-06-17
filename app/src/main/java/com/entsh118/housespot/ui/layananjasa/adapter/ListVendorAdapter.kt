@@ -4,6 +4,7 @@ import com.entsh118.housespot.data.api.response.VendorResponseItem
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import com.bumptech.glide.Glide
 import com.entsh118.housespot.databinding.ItemJasaBinding
@@ -11,6 +12,7 @@ import com.entsh118.housespot.ui.layananjasa.DetailJasaActivity
 
 class ListVendorAdapter(private val listVendor: List<VendorResponseItem>): RecyclerView.Adapter<ListVendorAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        Log.e("CEK LIST di adapter",listVendor[0].toString())
         val binding = ItemJasaBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }

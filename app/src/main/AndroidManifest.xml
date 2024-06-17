@@ -39,7 +39,8 @@
             android:exported="false" />
         <activity
             android:name=".ui.layananjasa.DetailJasaActivity"
-            android:exported="false" />
+            android:exported="false" >
+        </activity>
         <activity
             android:name=".ui.prediksiharga.ResultPrediksiHargaActivity"
             android:exported="false" />

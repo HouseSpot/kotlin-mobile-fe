@@ -21,43 +21,52 @@ tools:context=".ui.layananjasa.DetailJasaActivity">
         android:id="@+id/namaVendor"
         android:layout_width="198dp"
         android:layout_height="22dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="28dp"
         android:text="Nama Vendor"
         android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="57dp"
-        tools:layout_editor_absoluteY="316dp" />
+        app:layout_constraintStart_toStartOf="@+id/detailPhoto"
+        app:layout_constraintTop_toBottomOf="@+id/detailPhoto" />
 
     <TextView
         android:id="@+id/description"
         android:layout_width="355dp"
         android:layout_height="97dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="64dp"
         android:text="In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content."
         android:textColor="@color/black"
         android:textSize="12sp"
-        tools:layout_editor_absoluteX="28dp"
-        tools:layout_editor_absoluteY="352dp" />
+        app:layout_constraintStart_toStartOf="@+id/detailPhoto"
+        app:layout_constraintTop_toBottomOf="@+id/detailPhoto" />
 
     <TextView
+        android:id="@+id/text_harga"
         android:layout_width="198dp"
         android:layout_height="22dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="148dp"
         android:text="Minimum biaya"
         android:textColor="@color/black"
         android:textSize="12sp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="28dp"
-        tools:layout_editor_absoluteY="459dp" />
+        app:layout_constraintStart_toStartOf="@+id/detailPhoto"
+        app:layout_constraintTop_toBottomOf="@+id/detailPhoto" />
 
     <TextView
         android:id="@+id/rating"
         android:layout_width="wrap_content"
         android:layout_height="22dp"
+        android:layout_marginStart="340dp"
+        android:layout_marginTop="28dp"
         android:text="4,9"
         android:textColor="@color/black"
         android:textSize="12sp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="343dp"
-        tools:layout_editor_absoluteY="316dp" />
+        app:layout_constraintStart_toStartOf="@+id/detailPhoto"
+        app:layout_constraintTop_toBottomOf="@+id/detailPhoto" />
 
     <TextView
         android:layout_width="198dp"
@@ -66,8 +75,8 @@ tools:context=".ui.layananjasa.DetailJasaActivity">
         android:text="Rp. 150.000,- / day"
         android:textColor="@color/black"
         android:textSize="14sp"
-        tools:layout_editor_absoluteX="28dp"
-        tools:layout_editor_absoluteY="481dp" />
+        app:layout_constraintStart_toStartOf="@+id/text_harga"
+        app:layout_constraintTop_toBottomOf="@+id/text_harga"/>
 
     <RelativeLayout
         android:id="@+id/star"
@@ -80,22 +89,30 @@ tools:context=".ui.layananjasa.DetailJasaActivity">
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/textLokasi"
         android:layout_width="198dp"
         android:layout_height="22dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="216dp"
         android:text="Lokasi Utama"
         android:textColor="@color/black"
         android:textSize="12sp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="28dp"
-        tools:layout_editor_absoluteY="535dp" />
+        app:layout_constraintStart_toStartOf="@+id/detailPhoto"
+        app:layout_constraintTop_toBottomOf="@+id/detailPhoto" />
 
     <TextView
         android:id="@+id/lokasi"
         android:layout_width="198dp"
         android:layout_height="22dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
         android:text="Jakarta"
-        tools:layout_editor_absoluteX="28dp"
-        tools:layout_editor_absoluteY="557dp" />
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="parent" />
 
     <Button
         android:id="@+id/button_pesan_layanan"
