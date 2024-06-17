@@ -5,8 +5,8 @@
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_centerInParent="true"
         android:src="@drawable/logo"
         android:contentDescription="@string/housespot_logo" />
@@ -30,7 +30,7 @@
         android:layout_below="@id/app_name"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"
-        android:text="@string/stay_positive_stay_close_with_quran"
+        android:text="Find Your Home with One Touch!"
         android:textColor="#FFFFFF"
         android:textSize="16sp" />
 </RelativeLayout>
