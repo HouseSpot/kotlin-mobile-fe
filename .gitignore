@@ -26,6 +26,9 @@ out/
 .gradle/
 build/
 
+# Ignore changes to network config
+./app/src/main/res/xml/network_security_config.xml
+
 # Local configuration file (sdk path, etc)
 local.properties
 
