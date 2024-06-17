@@ -133,10 +133,10 @@ class PrediksiFormActivity : AppCompatActivity() {
                 Toast.makeText(this, result, Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(this, "Prediction successful: $result", Toast.LENGTH_SHORT).show()
-//                val intent = Intent(this, ResultPrediksiHargaActivity::class.java).apply {
-//                    putExtra("prediction", result)
-//                }
-//                startActivity(intent)
+                val intent = Intent(this, ResultPrediksiHargaActivity::class.java).apply {
+                    putExtra("prediction", result)
+                }
+                startActivity(intent)
             }
         })
     }
