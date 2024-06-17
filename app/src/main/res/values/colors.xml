@@ -3,6 +3,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="yellow">#FFFFD700</color>
+    <color name="gray">#FFADBED6</color>
     <color name="appBarPrimary">#FFFFFFFF</color>
     <color name="backgroundColor">#FF86C5FF</color>
 
