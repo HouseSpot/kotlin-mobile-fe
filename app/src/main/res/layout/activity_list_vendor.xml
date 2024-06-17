@@ -7,11 +7,19 @@
     android:layout_height="match_parent"
     tools:context=".ui.layananjasa.ListVendorActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvJasa"
-        android:layout_width="419dp"
-        android:layout_height="739dp"
-        tools:layout_editor_absoluteX="-9dp"
-        tools:layout_editor_absoluteY="-9dp" />
+    <View
+        android:id="@+id/header_background"
+        android:layout_width="0dp"
+        android:layout_height="75dp"
+        android:background="#86C5FF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_list_vendor"
+        android:layout_width="410dp"
+        android:layout_height="656dp"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="75dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

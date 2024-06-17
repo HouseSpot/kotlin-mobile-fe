@@ -12,6 +12,7 @@ import com.entsh118.housespot.data.DataStoreManager
 import com.entsh118.housespot.data.api.model.UserPreferences
 import com.entsh118.housespot.databinding.ActivityHomePageBinding
 import com.entsh118.housespot.ui.account.AccountHomepageActivity
+import com.entsh118.housespot.ui.layananjasa.ListVendorActivity
 import com.entsh118.housespot.ui.pesanan.PesananClientActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.flow.first
@@ -33,6 +34,10 @@ class HomePageActivity : AppCompatActivity() {
         loadUserData()
         loadServiceRecommendations()
         setupBottomNavigation()
+
+        binding.revovasiServiceButton.setOnClickListener {
+            startActivity( Intent(this@HomePageActivity, ListVendorActivity::class.java))
+        }
     }
 
     private fun setupRecyclerView() {

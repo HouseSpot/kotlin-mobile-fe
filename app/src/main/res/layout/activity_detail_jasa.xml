@@ -18,7 +18,7 @@ tools:context=".ui.layananjasa.DetailJasaActivity">
 
 
     <TextView
-        android:id="@+id/author"
+        android:id="@+id/namaVendor"
         android:layout_width="198dp"
         android:layout_height="22dp"
         android:text="Nama Vendor"
@@ -98,7 +98,7 @@ tools:context=".ui.layananjasa.DetailJasaActivity">
         tools:layout_editor_absoluteY="557dp" />
 
     <Button
-        android:id="@+id/addStory"
+        android:id="@+id/button_pesan_layanan"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"

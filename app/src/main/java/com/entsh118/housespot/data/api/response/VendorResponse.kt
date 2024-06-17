@@ -1,13 +1,16 @@
-package com.entsh118.housespot.data.api.model
+package com.entsh118.housespot.data.api.response
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 data class VendorResponse(
 
 	@field:SerializedName("VendorResponse")
-	val vendorResponse: List<VendorResponseItem?>? = null
+	val vendorResponse: List<VendorResponseItem>? =  emptyList(),
 )
 
+@Parcelize
 data class PemilikInfo(
 
 	@field:SerializedName("nama")
@@ -18,8 +21,10 @@ data class PemilikInfo(
 
 	@field:SerializedName("email")
 	val email: String? = null
-)
+):Parcelable
 
+
+@Parcelize
 data class VendorResponseItem(
 
 	@field:SerializedName("tipe_layanan")
@@ -29,7 +34,7 @@ data class VendorResponseItem(
 	val profile: String? = null,
 
 	@field:SerializedName("rating")
-	val rating: Any? = null,
+	val rating: Integer? = null,
 
 	@field:SerializedName("deskripsi_layanan")
 	val deskripsiLayanan: String? = null,
@@ -54,4 +59,4 @@ data class VendorResponseItem(
 
 	@field:SerializedName("jasa_kontraktor")
 	val jasaKontraktor: List<String?>? = null
-)
+): Parcelable

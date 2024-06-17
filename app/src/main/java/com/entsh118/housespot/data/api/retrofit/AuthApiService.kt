@@ -3,11 +3,14 @@ package com.entsh118.housespot.data.api.retrofit
 import com.entsh118.housespot.data.api.request.LoginRequest
 import com.entsh118.housespot.data.api.response.LoginResponse
 import com.entsh118.housespot.data.api.response.RegisterResponse
+import com.entsh118.housespot.data.api.response.VendorResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
+import retrofit2.http.GET
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
@@ -29,4 +32,5 @@ interface AuthApiService {
     suspend fun login(
         @Body loginRequest: LoginRequest
     ): LoginResponse
+
 }
