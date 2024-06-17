@@ -47,16 +47,4 @@ object ApiConfig {
         return retrofit.create(ClientApiService::class.java)
     }
 
-    fun getApiService(): ClientApiService {
-        val loggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
-        val client = OkHttpClient.Builder()
-            .addInterceptor(loggingInterceptor)
-            .build()
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://cc-api-new-2na55gy4bq-et.a.run.app/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .client(client)
-            .build()
-        return retrofit.create(ClientApiService::class.java)
-    }
 }
