@@ -49,6 +49,26 @@ object ApiConfig {
             .build()
         return retrofit.create(MLApiService::class.java)
     }
+    
+    
+    fun getClientService(): ClientApiService {
+        val loggingInterceptor = if (BuildConfig.DEBUG) {
+            HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+        } else {
+            HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.NONE)
+        }
+
+        val client = OkHttpClient.Builder()
+            .addInterceptor(loggingInterceptor)
+            .build()
+
+        val retrofit = Retrofit.Builder()
+            .baseUrl(BASE_URL!!)
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(client)
+            .build()
+        return retrofit.create(ClientApiService::class.java)
+    }
 
     fun getOrderService(): OrderApiService {
         val loggingInterceptor = if (BuildConfig.DEBUG) {
@@ -60,6 +80,7 @@ object ApiConfig {
         val client = OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
             .build()
+
         val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL_ORDER!!)
             .addConverterFactory(GsonConverterFactory.create())

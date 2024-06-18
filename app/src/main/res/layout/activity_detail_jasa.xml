@@ -6,99 +6,263 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 tools:context=".ui.layananjasa.DetailJasaActivity">
 
-    <ImageView
-        android:id="@+id/detailPhoto"
-        android:layout_width="407dp"
-        android:layout_height="287dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_place_holder"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
 
+        android:id="@+id/detailPhoto"
+        android:layout_height="300dp"
+        android:layout_marginBottom="100dp"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/portfolioRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            app:layout_constraintTop_toBottomOf="@id/detailPhoto"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            tools:listitem="@layout/item_portfolio_image"/>
+    </LinearLayout>
 
     <TextView
-        android:id="@+id/author"
-        android:layout_width="198dp"
+        android:id="@+id/namaVendor"
+        android:layout_width="wrap_content"
         android:layout_height="22dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="28dp"
         android:text="Nama Vendor"
         android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="57dp"
-        tools:layout_editor_absoluteY="316dp" />
+        app:layout_constraintStart_toStartOf="@+id/detailPhoto"
+        app:layout_constraintTop_toBottomOf="@+id/detailPhoto" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="22dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="132dp"
+        android:text="Spesifikasi Vendor"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/detailPhoto"
+        app:layout_constraintTop_toBottomOf="@+id/detailPhoto" />
 
     <TextView
         android:id="@+id/description"
-        android:layout_width="355dp"
-        android:layout_height="97dp"
+        android:layout_width="354dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="64dp"
         android:text="In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content."
         android:textColor="@color/black"
         android:textSize="12sp"
-        tools:layout_editor_absoluteX="28dp"
-        tools:layout_editor_absoluteY="352dp" />
+        app:layout_constraintStart_toStartOf="@+id/detailPhoto"
+        app:layout_constraintTop_toBottomOf="@+id/detailPhoto" />
+
+
+    <RelativeLayout
+        android:id="@+id/layout"
+        android:layout_width="345dp"
+        android:layout_height="174dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="468dp"
+        android:background="@drawable/frame"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </RelativeLayout>
 
     <TextView
-        android:layout_width="198dp"
-        android:layout_height="22dp"
-        android:text="Minimum biaya"
+        android:id="@+id/textLokasi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="205dp"
+        android:text="Lokasi Utama"
         android:textColor="@color/black"
-        android:textSize="12sp"
+        android:textSize="12dp"
+        app:layout_constraintStart_toStartOf="@+id/detailPhoto"
+        app:layout_constraintTop_toBottomOf="@+id/detailPhoto" />
+
+    <TextView
+        android:id="@+id/harga"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="138dp"
+        android:layout_marginTop="132dp"
+        android:text="Rp. 150.000,- / day"
+        android:textColor="@color/black"
+        android:textSize="12dp"
+        app:layout_constraintStart_toStartOf="@+id/namaVendor"
+        app:layout_constraintTop_toBottomOf="@+id/namaVendor" />
+
+    <TextView
+        android:id="@+id/jenisProperti"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="230dp"
+        android:text="Resenditial"
+        android:textColor="@color/black"
+        android:textSize="12dp"
+        app:layout_constraintStart_toStartOf="@+id/detailPhoto"
+        app:layout_constraintTop_toBottomOf="@+id/detailPhoto" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="180dp"
+        android:text="Minimum biaya"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="12dp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="28dp"
-        tools:layout_editor_absoluteY="459dp" />
+        app:layout_constraintStart_toStartOf="@+id/detailPhoto"
+        app:layout_constraintTop_toBottomOf="@+id/detailPhoto" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="230dp"
+        android:text="Tipe Bangunan"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="12dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/detailPhoto"
+        app:layout_constraintTop_toBottomOf="@+id/detailPhoto" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="205dp"
+        android:text="Lokasi Utama"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="12dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/detailPhoto"
+        app:layout_constraintTop_toBottomOf="@+id/detailPhoto" />
+
+    <TextView
+        android:id="@+id/layanan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="255dp"
+        android:text="Renovasi, Bangun Rumah"
+        android:textColor="@color/black"
+        android:textSize="12dp"
+        app:layout_constraintStart_toStartOf="@+id/detailPhoto"
+        app:layout_constraintTop_toBottomOf="@+id/detailPhoto" />
+
+    <TextView
+        android:id="@+id/jenisVendor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="280dp"
+        android:text="Tukang, Kontraktor"
+        android:textColor="@color/black"
+        android:textSize="12dp"
+        app:layout_constraintStart_toStartOf="@+id/detailPhoto"
+        app:layout_constraintTop_toBottomOf="@+id/detailPhoto" />
+
+    <TextView
+        android:id="@+id/kontak"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="305dp"
+        android:text="fitriadwicahya@gmail.com"
+        android:textColor="@color/black"
+        android:textSize="12dp"
+        app:layout_constraintStart_toStartOf="@+id/detailPhoto"
+        app:layout_constraintTop_toBottomOf="@+id/detailPhoto" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="255dp"
+        android:text="Jenis Layanan"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="12dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/detailPhoto"
+        app:layout_constraintTop_toBottomOf="@+id/detailPhoto" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="280dp"
+        android:text="Jenis Vendor"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="12dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/detailPhoto"
+        app:layout_constraintTop_toBottomOf="@+id/detailPhoto" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="305dp"
+        android:text="Kontak Vendor"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="12dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/detailPhoto"
+        app:layout_constraintTop_toBottomOf="@+id/detailPhoto" />
+
 
     <TextView
         android:id="@+id/rating"
         android:layout_width="wrap_content"
         android:layout_height="22dp"
+        android:layout_marginStart="348dp"
+        android:layout_marginTop="28dp"
         android:text="4,9"
         android:textColor="@color/black"
         android:textSize="12sp"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="343dp"
-        tools:layout_editor_absoluteY="316dp" />
 
-    <TextView
-        android:layout_width="198dp"
-        android:id="@+id/harga"
-        android:layout_height="22dp"
-        android:text="Rp. 150.000,- / day"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        tools:layout_editor_absoluteX="28dp"
-        tools:layout_editor_absoluteY="481dp" />
+        app:layout_constraintStart_toStartOf="@+id/detailPhoto"
+        app:layout_constraintTop_toBottomOf="@+id/detailPhoto" />
 
     <RelativeLayout
         android:id="@+id/star"
         android:layout_width="22dp"
         android:layout_height="23dp"
-        android:layout_marginStart="320dp"
-        android:layout_marginTop="312dp"
+        android:layout_marginStart="325dp"
+        android:layout_marginTop="326dp"
         android:background="@drawable/star"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:layout_width="198dp"
-        android:layout_height="22dp"
-        android:text="Lokasi Utama"
-        android:textColor="@color/black"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="28dp"
-        tools:layout_editor_absoluteY="535dp" />
 
     <TextView
         android:id="@+id/lokasi"
         android:layout_width="198dp"
         android:layout_height="22dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
         android:text="Jakarta"
-        tools:layout_editor_absoluteX="28dp"
-        tools:layout_editor_absoluteY="557dp" />
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="parent" />
 
     <Button
-        android:id="@+id/addStory"
+        android:id="@+id/button_pesan_layanan"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"

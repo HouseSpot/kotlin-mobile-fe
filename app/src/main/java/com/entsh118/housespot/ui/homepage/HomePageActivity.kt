@@ -12,6 +12,7 @@ import com.entsh118.housespot.data.DataStoreManager
 import com.entsh118.housespot.data.api.model.UserPreferences
 import com.entsh118.housespot.databinding.ActivityHomePageBinding
 import com.entsh118.housespot.ui.account.AccountHomepageActivity
+import com.entsh118.housespot.ui.layananjasa.ListVendorActivity
 import com.entsh118.housespot.ui.pesanan.PesananClientActivity
 import com.entsh118.housespot.ui.prediksiharga.PrediksiFormActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -35,6 +36,7 @@ class HomePageActivity : AppCompatActivity() {
         loadUserData()
         loadServiceRecommendations()
         setupBottomNavigation()
+
     }
 
     private fun setupRecyclerView() {
@@ -62,6 +64,10 @@ class HomePageActivity : AppCompatActivity() {
         binding.llEstimasiHarga.setOnClickListener {
             // Handle service 1 navigation
             val intent = Intent(this, PrediksiFormActivity::class.java)
+            startActivity(intent)
+        }
+        binding.revovasiServiceButton.setOnClickListener {
+            val intent = Intent(this, ListVendorActivity::class.java)
             startActivity(intent)
         }
     }

@@ -3,6 +3,9 @@
     <string name="housespot">HouseSpot</string>
     <string name="stay_positive_stay_close_with_quran">Stay Positive, Stay Close With Quran</string>
     <string name="housespot_logo">HouseSpot Logo</string>
+    <string name="tab_text_1">Pesanan Aktif</string>
+    <string name="tab_text_2">Riwayat Pesanan</string>
+    <string name="select_birth_date">Pilih tanggal</string>
 
     <string-array name="status_array">
         <item>Waiting</item>

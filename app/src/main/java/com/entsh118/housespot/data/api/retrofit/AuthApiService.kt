@@ -5,6 +5,7 @@ import com.entsh118.housespot.data.api.request.LoginRequest
 import com.entsh118.housespot.data.api.response.LoginResponse
 import com.entsh118.housespot.data.api.response.OrderDetailsResponse
 import com.entsh118.housespot.data.api.response.RegisterResponse
+import com.entsh118.housespot.data.api.response.VendorResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
