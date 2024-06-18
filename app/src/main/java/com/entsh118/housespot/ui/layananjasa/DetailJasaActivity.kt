@@ -1,5 +1,6 @@
 package com.entsh118.housespot.ui.layananjasa
 
+import com.entsh118.housespot.ui.layananjasa.FormPesananActivity
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -25,9 +26,11 @@ class DetailJasaActivity : AppCompatActivity() {
         val detail = intent.getParcelableExtra<VendorResponseItem>(DETAIL_VENDOR)
         detail?.let { setupAction(it) }
         binding.buttonPesanLayanan.setOnClickListener {
-            startActivity( Intent(this@DetailJasaActivity, FormPesananActivity::class.java))
-            intent.putExtra(DetailJasaActivity.DETAIL_VENDOR, detail )
+            val intent = Intent(this@DetailJasaActivity, FormPesananActivity::class.java)
+            intent.putExtra(FormPesananActivity.DETAIL_VENDOR, detail)
+            startActivity(intent)
         }
+
     }
 
     private fun setupAction(detail: VendorResponseItem) {

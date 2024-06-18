@@ -40,8 +40,6 @@ class PesananClientActivity : AppCompatActivity() {
         val sectionsPagerAdapter = SectionPagerAdapter(this)
         //sectionsPagerAdapter.username = user.login
 
-
-
         val viewPager: ViewPager2 = binding.viewPager
         viewPager.adapter = sectionsPagerAdapter
 
@@ -49,8 +47,6 @@ class PesananClientActivity : AppCompatActivity() {
         TabLayoutMediator(tabs, viewPager) { tab, position ->
             tab.text = resources.getString(TAB_TITLES[position])
         }.attach()
-
-        setupBottomNavigation()
     }
 
     private fun loadUserData() {
@@ -65,25 +61,5 @@ class PesananClientActivity : AppCompatActivity() {
         private val TAB_TITLES = intArrayOf( R.string.tab_text_1, R.string.tab_text_2)
         const val EXTRA_USER = "extra_user"
     }
-    private fun setupBottomNavigation() {
-        val bottomNavigationView: BottomNavigationView = binding.bottomNavigation
-        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.nav_home -> {
-                    startActivity(Intent(this, HomePageActivity::class.java))
-                    // Handle home navigation
-                    true
-                }
-                R.id.nav_orders -> {
-                    true
-                }
-                R.id.nav_account -> {
-                    startActivity(Intent(this, AccountHomepageActivity::class.java))
-                    true
-                }
-                else -> false
-            }
-        }
-        bottomNavigationView.selectedItemId = R.id.nav_home
-    }
+
 }
