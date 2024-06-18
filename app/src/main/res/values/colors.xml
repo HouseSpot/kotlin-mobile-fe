@@ -20,8 +20,8 @@
     <color name="premiumColor">#FFC60A</color>
     <color name="waitingColor">#EEA02B</color>
     <color name="ongoingColor">#86C5FF</color>
-    <color name="successColor">#00A86B</color>
-    <color name="dangerColor">#FF0000</color>
+    <color name="completedColor">#00A86B</color>
+    <color name="rejectedColor">#FF0000</color>
     <color name="warningColor">#FFA500</color>
     <color name="infoColor">#00BFFF</color>
     <color name="whatsapp_green">#00BC4B</color>
