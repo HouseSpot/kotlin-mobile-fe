@@ -7,9 +7,11 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.entsh118.housespot.R
 import com.entsh118.housespot.data.api.response.VendorResponseItem
 import com.entsh118.housespot.databinding.ActivityDetailJasaBinding
+import com.entsh118.housespot.ui.layananjasa.adapter.PortfolioAdapter
 
 class DetailJasaActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailJasaBinding
@@ -37,8 +39,23 @@ class DetailJasaActivity : AppCompatActivity() {
         binding.description.text = detail.deskripsiLayanan
         binding.rating.text = detail.rating.toString()
         binding.namaVendor.text = detail.pemilikInfo?.nama
-       // binding.harga.text = detail.harga.toString()
-       // binding.judul.text = detail.judul
-     //   binding.lokasi.text = detail.pemilikInfo?.
+        binding.lokasi.text = detail.lokasiKantor
+        // Set the type of property
+        binding.jenisProperti.text = detail.jenisProperti
+        // Set the vendor's services
+        binding.layanan.text = detail.tipeLayanan?.joinToString(", ")
+        // Set the type of vendor
+        binding.jenisVendor.text = detail.jasaKontraktor?.joinToString(", ")
+        // Set the vendor's contact email
+        binding.kontak.text = detail.pemilikInfo?.email
+        setupRecyclerView(detail.portofolio)
+    }
+
+    private fun setupRecyclerView(portofolio: List<String?>?) {
+        portofolio?.let {
+            val adapter = PortfolioAdapter(it.filterNotNull())
+            binding.portfolioRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+            binding.portfolioRecyclerView.adapter = adapter
+        }
     }
 }
