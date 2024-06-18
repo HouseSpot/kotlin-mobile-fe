@@ -12,6 +12,7 @@ object ApiConfig {
     var BASE_URL_ML: String? = BuildConfig.BASE_URL_ML
 
     var BASE_URL_AUTH: String? = "${BASE_URL}users/"
+    var BASE_URL_ORDER: String? = "${BASE_URL}orders/"
 
     fun getAuthService(): AuthApiService {
         val loggingInterceptor = if (BuildConfig.DEBUG) {
@@ -47,5 +48,23 @@ object ApiConfig {
             .client(client)
             .build()
         return retrofit.create(MLApiService::class.java)
+    }
+
+    fun getOrderService(): OrderApiService {
+        val loggingInterceptor = if (BuildConfig.DEBUG) {
+            HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+        } else {
+            HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.NONE)
+        }
+
+        val client = OkHttpClient.Builder()
+            .addInterceptor(loggingInterceptor)
+            .build()
+        val retrofit = Retrofit.Builder()
+            .baseUrl(BASE_URL_ORDER!!)
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(client)
+            .build()
+        return retrofit.create(OrderApiService::class.java)
     }
 }

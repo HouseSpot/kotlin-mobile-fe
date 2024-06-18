@@ -3,8 +3,12 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="yellow">#FFFFD700</color>
+    <color name="gray">#FFADBED6</color>
     <color name="appBarPrimary">#FFFFFFFF</color>
     <color name="backgroundColor">#FF86C5FF</color>
+
+    <color name="activeNavColor">#FFC60A</color>
+    <color name="inactiveColor">#ADBED6</color>
 
     <color name="colorPrimary">#87CEFA</color>
     <color name="colorPrimaryDark">#4682B4</color>
@@ -16,8 +20,8 @@
     <color name="premiumColor">#FFC60A</color>
     <color name="waitingColor">#EEA02B</color>
     <color name="ongoingColor">#86C5FF</color>
-    <color name="successColor">#00A86B</color>
-    <color name="dangerColor">#FF0000</color>
+    <color name="completedColor">#00A86B</color>
+    <color name="rejectedColor">#FF0000</color>
     <color name="warningColor">#FFA500</color>
     <color name="infoColor">#00BFFF</color>
     <color name="whatsapp_green">#00BC4B</color>
