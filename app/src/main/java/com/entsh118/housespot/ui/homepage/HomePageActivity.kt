@@ -37,9 +37,6 @@ class HomePageActivity : AppCompatActivity() {
         loadServiceRecommendations()
         setupBottomNavigation()
 
-        binding.revovasiServiceButton.setOnClickListener {
-            startActivity( Intent(this@HomePageActivity, ListVendorActivity::class.java))
-        }
     }
 
     private fun setupRecyclerView() {
@@ -67,6 +64,10 @@ class HomePageActivity : AppCompatActivity() {
         binding.llEstimasiHarga.setOnClickListener {
             // Handle service 1 navigation
             val intent = Intent(this, PrediksiFormActivity::class.java)
+            startActivity(intent)
+        }
+        binding.revovasiServiceButton.setOnClickListener {
+            val intent = Intent(this, ListVendorActivity::class.java)
             startActivity(intent)
         }
     }

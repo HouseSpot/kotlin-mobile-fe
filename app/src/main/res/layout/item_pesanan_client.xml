@@ -27,7 +27,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/description"
+            android:id="@+id/type"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_marginStart="30dp"
@@ -69,6 +69,7 @@
             android:textSize="14sp" />
 
         <RelativeLayout
+            android:id="@+id/kontak"
             android:layout_width="100dp"
             android:layout_height="30dp"
             android:layout_marginStart="130dp"
@@ -88,7 +89,7 @@
 
 
         <Button
-            android:id="@+id/addStory"
+            android:id="@+id/status"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:layout_marginStart="30dp"

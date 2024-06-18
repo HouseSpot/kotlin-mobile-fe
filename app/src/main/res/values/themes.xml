@@ -60,4 +60,34 @@
         <item name="android:padding">12dp</item>
         <item name="android:textAppearance">@style/CustomSpinnerTextAppearance</item>
     </style>
+
+    <!-- Date picker style -->
+    <style name="ThemeOverlay.App.DatePicker" parent="@style/ThemeOverlay.Material3.MaterialCalendar">
+        <item name="colorSurfaceContainerHigh">@color/white</item>
+        <item name="materialCalendarHeaderSelection">@style/Custom.Widget.Material3.MaterialCalendar.HeaderSelection</item>
+        <item name="buttonBarNegativeButtonStyle">@style/Widget.App.NegativeButton</item>
+        <item name="buttonBarPositiveButtonStyle">@style/Widget.App.PositiveButton</item>
+    </style>
+
+    <style name="Custom.Widget.Material3.MaterialCalendar.HeaderSelection" parent="Widget.Material3.MaterialCalendar.HeaderSelection">
+
+    </style>
+
+    <!-- Alert dialog positive button style -->
+    <style name="Widget.App.PositiveButton" parent="Widget.Material3.Button">
+
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.PositiveButton</item>
+    </style>
+    <style name="ThemeOverlay.App.PositiveButton" parent="ThemeOverlay.Material3.Button">
+        <item name="colorContainer">?attr/colorPrimary</item>
+        <item name="colorOnContainer">?attr/colorOnPrimary</item>
+    </style>
+    <!-- Alert dialog negative button style -->
+    <style name="Widget.App.NegativeButton" parent="Widget.Material3.Button.TonalButton">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.NegativeButton</item>
+    </style>
+    <style name="ThemeOverlay.App.NegativeButton" parent="ThemeOverlay.Material3.Button.TonalButton">
+        <item name="colorContainer">@color/blue</item>
+        <item name="colorOnContainer">@color/white</item>
+    </style>
 </resources>

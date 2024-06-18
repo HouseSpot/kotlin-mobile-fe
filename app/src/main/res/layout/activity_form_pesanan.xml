@@ -71,20 +71,19 @@
                         android:textColor="@color/black"
                         android:textSize="14sp" />
 
-
-                    <CheckBox
-                        android:id="@+id/checkbox_cheese"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="4dp"
-                        android:text="Renovasi" />
-
-                    <CheckBox
-                        android:id="@+id/checkbox_meat"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="4dp"
-                        android:text="Bangun dari awal" />
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <RadioButton android:id="@+id/renovasi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="Renovasi"/>
+                <RadioButton android:id="@+id/bangun"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="Bangun dari awal"/>
+            </RadioGroup>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -128,30 +127,32 @@
                         android:padding="12dp"
                         android:textSize="14sp" />
 
-                    <RelativeLayout
-                        android:layout_width="320dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="10dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" >
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/startLayananLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="330dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                app:endIconDrawable="@drawable/ic_calendar"
+                app:endIconMode="custom"
+                app:endIconTint="?attr/colorSecondary"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
 
-                        <Button
-                            android:id="@+id/btnDatePickerStart"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Select Date" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/startLayananText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:enabled="false"
+                    android:textColor="@color/black"
+                    android:hint="dd-mm-yyyy"
+                    android:inputType="date" />
 
-                        <TextView
-                            android:id="@+id/tvSelectedDateStart"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/btnDatePickerStart"
-                            android:layout_marginTop="-50dp"
-                            android:layout_marginStart="150dp"
-                            android:padding="16dp"
-                            android:textSize="18sp" />
-                    </RelativeLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
 
                     <TextView
@@ -161,36 +162,34 @@
                         android:textColor="@color/black"
                         android:padding="12dp"
                         android:textSize="14sp" />
-                    <RelativeLayout
-                        android:layout_width="320dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="10dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" >
 
-                        <Button
-                            android:id="@+id/btnDatePickerEnd"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Select Date" />
 
-                        <TextView
-                            android:id="@+id/tvSelectedDateEnd"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/btnDatePickerEnd"
-                            android:layout_marginTop="-50dp"
-                            android:layout_marginStart="150dp"
-                            android:padding="16dp"
-                            android:textSize="18sp" />
-                    </RelativeLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/endDateEditTextLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="330dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                app:endIconDrawable="@drawable/ic_calendar"
+                app:endIconMode="custom"
+                app:endIconTint="?attr/colorSecondary"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
 
-                    <DatePicker
-                        android:id="@+id/datePicker"
-                        android:layout_width="330dp"
-                        android:layout_height="0dp"
-                        android:datePickerMode="calendar"/>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/endDateEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:enabled="false"
+                    android:textColor="@color/black"
+                    android:hint="dd-mm-yyyy"
+                    android:inputType="date" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
 
                     <TextView
