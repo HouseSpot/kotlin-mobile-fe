@@ -46,11 +46,11 @@ class RoleSelectionActivity : AppCompatActivity() {
     }
 
     private fun setupToolbar() {
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        val toolbar: Toolbar = binding.toolbar
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false) // Hide default title
 
-        val backButton: ImageView = findViewById(R.id.toolbar_back_button)
+        val backButton: ImageView = binding.toolbarBackButton
         backButton.setOnClickListener {
             onBackPressed()
         }

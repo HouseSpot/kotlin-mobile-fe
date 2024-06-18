@@ -33,6 +33,7 @@
             android:background="@drawable/bg_premium_label"
             android:paddingHorizontal="8dp"
             android:paddingVertical="4dp"
+            android:visibility="gone"
             android:text="Premium Vendor"
             android:textColor="@color/white"
             android:textSize="10sp" />
@@ -41,9 +42,8 @@
             android:id="@+id/tv_project_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tv_premium_vendor"
-            android:layout_alignStart="@id/tv_premium_vendor"
-            android:layout_marginStart="-115dp"
+            android:layout_below="@id/tv_greeting"
+            android:layout_alignStart="@id/tv_greeting"
             android:layout_marginTop="6dp"
             android:text="Berikut informasi proyekmu!"
             android:textColor="@android:color/white"
@@ -85,6 +85,7 @@
 
             <!-- Promotional Card -->
             <RelativeLayout
+                android:id="@+id/rl_promo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rounded_card"

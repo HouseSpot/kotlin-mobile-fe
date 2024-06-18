@@ -1,7 +1,9 @@
 package com.entsh118.housespot.data.api.retrofit
 
+import com.entsh118.housespot.data.api.model.UserPreferences
 import com.entsh118.housespot.data.api.request.LoginRequest
 import com.entsh118.housespot.data.api.response.LoginResponse
+import com.entsh118.housespot.data.api.response.OrderDetailsResponse
 import com.entsh118.housespot.data.api.response.RegisterResponse
 import com.entsh118.housespot.data.api.response.VendorResponse
 import okhttp3.MultipartBody
@@ -14,6 +16,7 @@ import retrofit2.http.GET
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
+import retrofit2.http.Path
 
 interface AuthApiService {
     @Multipart
@@ -33,4 +36,8 @@ interface AuthApiService {
         @Body loginRequest: LoginRequest
     ): LoginResponse
 
+    @GET("{id_user}")
+    fun getUserProfile(
+        @Path("id_user") idUser: String
+    ): Call<UserPreferences>
 }

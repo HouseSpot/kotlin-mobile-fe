@@ -42,15 +42,28 @@
             android:exported="false" />
         <activity
             android:name=".ui.layananjasa.DetailJasaActivity"
-            android:exported="false" >
-        </activity>
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.orderdetails.VendorOrderDetailsActivity"
+            android:exported="false" />
+
         <activity
             android:name=".ui.prediksiharga.ResultPrediksiHargaActivity"
             android:exported="false" />
         <activity
             android:name=".ui.homepage.HomePageActivity"
-            android:exported="false" >
-        </activity>
+            android:exported="false" />
+        <activity
+            android:name=".ui.homepage.VendorHomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.orderdetails.OrderDetailsActivity"
+            android:exported="false" />
+
+        <activity android:name=".ui.premium.PremiumVendorActivity"
+            android:exported="false" />
+
         <activity android:name=".MainActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -61,8 +74,10 @@
             android:name=".ui.orderdetails.OrderDetailsActivity"
             android:exported="false" />
         <activity android:name=".ui.auth.OnboardingActivity" />
-        <activity android:name=".ui.auth.CreateAccountActivity" />
 
+        <activity android:name=".ui.account.AccountVendorActivity" />
+
+        <activity android:name=".ui.auth.CreateAccountActivity" />
 
         <activity android:name=".ui.prediksiharga.PrediksiFormActivity" />
 

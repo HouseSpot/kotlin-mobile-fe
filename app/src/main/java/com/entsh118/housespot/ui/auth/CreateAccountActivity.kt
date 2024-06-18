@@ -7,11 +7,13 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.OpenableColumns
 import android.view.View
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import com.entsh118.housespot.R
@@ -59,6 +61,7 @@ class CreateAccountActivity : AppCompatActivity() {
             }
         }
 
+        setupToolbar()
         setupObservers()
         setupListeners()
 
@@ -69,6 +72,17 @@ class CreateAccountActivity : AppCompatActivity() {
         etConfirmPassword = binding.etConfirmPassword
         etName = binding.etName
         etPhone = binding.etPhone
+    }
+
+    private fun setupToolbar() {
+        val toolbar: Toolbar = binding.toolbar
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false) // Hide default title
+
+        val backButton: ImageView = binding.toolbarBackButton
+        backButton.setOnClickListener {
+            onBackPressed()
+        }
     }
 
     private fun setupObservers() {
