@@ -9,6 +9,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 object ApiConfig {
 
     var BASE_URL: String? = BuildConfig.BASE_URL
+    var BASE_URL_ML: String? = BuildConfig.BASE_URL_ML
+
     var BASE_URL_AUTH: String? = "${BASE_URL}users/"
 
     fun getAuthService(): AuthApiService {
@@ -29,7 +31,11 @@ object ApiConfig {
         return retrofit.create(AuthApiService::class.java)
     }
 
+<<<<<<< HEAD
     fun getClientService(): ClientApiService {
+=======
+    fun getMLService(): MLApiService {
+>>>>>>> c78661f5a869a688a73094c05dfc6fdc0252682e
         val loggingInterceptor = if (BuildConfig.DEBUG) {
             HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
         } else {
@@ -40,6 +46,7 @@ object ApiConfig {
             .addInterceptor(loggingInterceptor)
             .build()
         val retrofit = Retrofit.Builder()
+<<<<<<< HEAD
             .baseUrl(BASE_URL!!)
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
@@ -47,4 +54,12 @@ object ApiConfig {
         return retrofit.create(ClientApiService::class.java)
     }
 
+=======
+            .baseUrl(BASE_URL_ML!!)
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(client)
+            .build()
+        return retrofit.create(MLApiService::class.java)
+    }
+>>>>>>> c78661f5a869a688a73094c05dfc6fdc0252682e
 }
