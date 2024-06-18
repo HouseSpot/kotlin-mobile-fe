@@ -32,8 +32,8 @@ class ProgressProyekFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val statusArray = resources.getStringArray(R.array.status_array)
-        val adapter = StatusSpinnerAdapter(requireContext(), statusArray)
-        binding.spinnerStatus.adapter = adapter
+//        val adapter = StatusSpinnerAdapter(requireContext(), statusArray)
+//        binding.spinnerStatus.adapter = adapter
 
         // Example data
         val reportLogs = listOf(

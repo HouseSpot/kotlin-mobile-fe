@@ -1,7 +1,7 @@
 package com.entsh118.housespot.custom
 
 import android.content.Context
-import android.view.LayoutInflater
+import android.graphics.Typeface
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
@@ -9,41 +9,36 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.entsh118.housespot.R
 
-class StatusSpinnerAdapter(context: Context, statusArray: Array<String>) :
-    ArrayAdapter<String>(context, 0, statusArray) {
+class StatusSpinnerAdapter(context: Context, private val items: List<String>) : ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, items) {
+
+    private var selectedItemPosition: Int = -1
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        val view = convertView ?: LayoutInflater.from(context).inflate(R.layout.spinner_item, parent, false)
-        val textView: TextView = view.findViewById(R.id.spinner_item_text)
-        val status = getItem(position)
-        textView.text = status
-        setStatusColor(textView, status)
+        val view = super.getView(position, convertView, parent)
+        setColorAndStyle(view as TextView, position, position == selectedItemPosition)
         return view
     }
 
     override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
-        val view = convertView ?: LayoutInflater.from(context).inflate(R.layout.spinner_item, parent, false)
-        val textView: TextView = view.findViewById(R.id.spinner_item_text)
-        val status = getItem(position)
-        textView.text = status
-        setStatusColor(textView, status)
+        val view = super.getDropDownView(position, convertView, parent)
+        setColorAndStyle(view as TextView, position, position == selectedItemPosition)
         return view
     }
 
-    private fun setStatusColor(textView: TextView, status: String?) {
-        when (status) {
-            "Waiting" -> {
-                textView.setBackgroundColor(ContextCompat.getColor(context, R.color.waitingColor))
-            }
-            "Ongoing" -> {
-                textView.setBackgroundColor(ContextCompat.getColor(context, R.color.ongoingColor))
-            }
-            "Completed" -> {
-                textView.setBackgroundColor(ContextCompat.getColor(context, R.color.successColor))
-            }
-            "Rejected" -> {
-                textView.setBackgroundColor(ContextCompat.getColor(context, R.color.dangerColor))
-            }
+    private fun setColorAndStyle(view: TextView, position: Int, isSelected: Boolean) {
+        val color = when (items[position]) {
+            "WAITING" -> context.getColor(R.color.waitingColor)
+            "ONGOING" -> context.getColor(R.color.ongoingColor)
+            "COMPLETED" -> context.getColor(R.color.completedColor)
+            "REJECTED" -> context.getColor(R.color.rejectedColor)
+            else -> context.getColor(android.R.color.black)
         }
+        view.setTextColor(color)
+        view.setTypeface(null, if (isSelected) Typeface.BOLD else Typeface.NORMAL)
+    }
+
+    fun setSelectedItemPosition(position: Int) {
+        selectedItemPosition = position
+        notifyDataSetChanged()
     }
 }
