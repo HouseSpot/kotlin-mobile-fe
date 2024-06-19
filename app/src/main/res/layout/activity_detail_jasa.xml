@@ -7,7 +7,7 @@ android:layout_height="match_parent"
 tools:context=".ui.layananjasa.DetailJasaActivity">
 
     <LinearLayout
-
+        app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/detailPhoto"
         android:layout_height="300dp"
         android:layout_marginBottom="100dp"
@@ -25,6 +25,7 @@ tools:context=".ui.layananjasa.DetailJasaActivity">
             app:layout_constraintBottom_toTopOf="parent"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
+            android:contentDescription="Portofolio Vendor"
             tools:listitem="@layout/item_portfolio_image"/>
     </LinearLayout>
 
@@ -88,7 +89,8 @@ tools:context=".ui.layananjasa.DetailJasaActivity">
         android:textColor="@color/black"
         android:textSize="12dp"
         app:layout_constraintStart_toStartOf="@+id/detailPhoto"
-        app:layout_constraintTop_toBottomOf="@+id/detailPhoto" />
+        app:layout_constraintTop_toBottomOf="@+id/detailPhoto"
+        tools:ignore="TextSizeCheck" />
 
     <TextView
         android:id="@+id/harga"
@@ -100,7 +102,8 @@ tools:context=".ui.layananjasa.DetailJasaActivity">
         android:textColor="@color/black"
         android:textSize="12dp"
         app:layout_constraintStart_toStartOf="@+id/namaVendor"
-        app:layout_constraintTop_toBottomOf="@+id/namaVendor" />
+        app:layout_constraintTop_toBottomOf="@+id/namaVendor"
+        tools:ignore="TextSizeCheck" />
 
     <TextView
         android:id="@+id/jenisProperti"
@@ -112,7 +115,8 @@ tools:context=".ui.layananjasa.DetailJasaActivity">
         android:textColor="@color/black"
         android:textSize="12dp"
         app:layout_constraintStart_toStartOf="@+id/detailPhoto"
-        app:layout_constraintTop_toBottomOf="@+id/detailPhoto" />
+        app:layout_constraintTop_toBottomOf="@+id/detailPhoto"
+        tools:ignore="TextSizeCheck" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -124,7 +128,8 @@ tools:context=".ui.layananjasa.DetailJasaActivity">
         android:textSize="12dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/detailPhoto"
-        app:layout_constraintTop_toBottomOf="@+id/detailPhoto" />
+        app:layout_constraintTop_toBottomOf="@+id/detailPhoto"
+        tools:ignore="TextSizeCheck" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -136,7 +141,8 @@ tools:context=".ui.layananjasa.DetailJasaActivity">
         android:textSize="12dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/detailPhoto"
-        app:layout_constraintTop_toBottomOf="@+id/detailPhoto" />
+        app:layout_constraintTop_toBottomOf="@+id/detailPhoto"
+        tools:ignore="TextSizeCheck" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -148,7 +154,8 @@ tools:context=".ui.layananjasa.DetailJasaActivity">
         android:textSize="12dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/detailPhoto"
-        app:layout_constraintTop_toBottomOf="@+id/detailPhoto" />
+        app:layout_constraintTop_toBottomOf="@+id/detailPhoto"
+        tools:ignore="TextSizeCheck" />
 
     <TextView
         android:id="@+id/layanan"
@@ -160,7 +167,8 @@ tools:context=".ui.layananjasa.DetailJasaActivity">
         android:textColor="@color/black"
         android:textSize="12dp"
         app:layout_constraintStart_toStartOf="@+id/detailPhoto"
-        app:layout_constraintTop_toBottomOf="@+id/detailPhoto" />
+        app:layout_constraintTop_toBottomOf="@+id/detailPhoto"
+        tools:ignore="TextSizeCheck" />
 
     <TextView
         android:id="@+id/jenisVendor"
@@ -172,7 +180,8 @@ tools:context=".ui.layananjasa.DetailJasaActivity">
         android:textColor="@color/black"
         android:textSize="12dp"
         app:layout_constraintStart_toStartOf="@+id/detailPhoto"
-        app:layout_constraintTop_toBottomOf="@+id/detailPhoto" />
+        app:layout_constraintTop_toBottomOf="@+id/detailPhoto"
+        tools:ignore="TextSizeCheck" />
 
     <TextView
         android:id="@+id/kontak"
@@ -184,7 +193,8 @@ tools:context=".ui.layananjasa.DetailJasaActivity">
         android:textColor="@color/black"
         android:textSize="12dp"
         app:layout_constraintStart_toStartOf="@+id/detailPhoto"
-        app:layout_constraintTop_toBottomOf="@+id/detailPhoto" />
+        app:layout_constraintTop_toBottomOf="@+id/detailPhoto"
+        tools:ignore="TextSizeCheck" />
 
 
     <TextView
@@ -197,7 +207,8 @@ tools:context=".ui.layananjasa.DetailJasaActivity">
         android:textSize="12dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/detailPhoto"
-        app:layout_constraintTop_toBottomOf="@+id/detailPhoto" />
+        app:layout_constraintTop_toBottomOf="@+id/detailPhoto"
+        tools:ignore="TextSizeCheck" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -209,7 +220,8 @@ tools:context=".ui.layananjasa.DetailJasaActivity">
         android:textSize="12dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/detailPhoto"
-        app:layout_constraintTop_toBottomOf="@+id/detailPhoto" />
+        app:layout_constraintTop_toBottomOf="@+id/detailPhoto"
+        tools:ignore="TextSizeCheck" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -221,7 +233,8 @@ tools:context=".ui.layananjasa.DetailJasaActivity">
         android:textSize="12dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/detailPhoto"
-        app:layout_constraintTop_toBottomOf="@+id/detailPhoto" />
+        app:layout_constraintTop_toBottomOf="@+id/detailPhoto"
+        tools:ignore="TextSizeCheck" />
 
 
     <TextView

@@ -12,11 +12,11 @@
         android:id="@+id/header_background"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:background="@color/backgroundColor"
         android:gravity="center"
         android:text="Pesan Layanan"
-        android:textColor="@android:color/white"
-        android:background="@color/backgroundColor"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:textColor="#0D47A1"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <ProgressBar
@@ -57,14 +57,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-                <RadioButton android:id="@+id/renovasi"
+
+                <RadioButton
+                    android:id="@+id/renovasi"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:text="Renovasi"/>
-                <RadioButton android:id="@+id/bangun"
+                    android:layout_height="48dp"
+                    android:text="Renovasi" />
+
+                <RadioButton
+                    android:id="@+id/bangun"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:text="Bangun dari awal"/>
+                    android:layout_height="48dp"
+                    android:text="Bangun dari awal" />
             </RadioGroup>
 
                     <TextView
@@ -75,14 +79,15 @@
                         android:padding="12dp"
                         android:textSize="14sp" />
 
-                    <EditText
-                        android:id="@+id/jenisProperti"
-                        android:layout_width="330dp"
-                        android:layout_height="wrap_content"
-                        android:hint="Ceritakan jenis properti"
-                        android:padding="12dp"
-                        android:textSize="12sp"
-                        android:background="@drawable/rounded_border" />
+        <EditText
+            android:id="@+id/jenisProperti"
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_border"
+            android:hint="Ceritakan jenis properti"
+            android:minHeight="48dp"
+            android:padding="12dp"
+            android:textSize="12sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -92,14 +97,15 @@
                         android:padding="12dp"
                         android:textSize="14sp" />
 
-                    <EditText
-                        android:id="@+id/biaya"
-                        android:layout_width="330dp"
-                        android:layout_height="wrap_content"
-                        android:hint="Masukan jumlah perkiraan biaya"
-                        android:padding="12dp"
-                        android:textSize="12sp"
-                        android:background="@drawable/rounded_border" />
+        <EditText
+            android:id="@+id/biaya"
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_border"
+            android:hint="Masukan jumlah perkiraan biaya"
+            android:minHeight="48dp"
+            android:padding="12dp"
+            android:textSize="12sp" />
 
                     <TextView
                         android:layout_width="wrap_content"

@@ -145,9 +145,10 @@
 
                 <Spinner
                     android:id="@+id/spinner_city"
+                    style="@style/CustomSpinnerStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/CustomSpinnerStyle"/>
+                    android:minHeight="48dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -160,9 +161,10 @@
 
                 <Spinner
                     android:id="@+id/spinner_district"
+                    style="@style/CustomSpinnerStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/CustomSpinnerStyle"/>
+                    android:minHeight="48dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -182,12 +184,13 @@
                         android:id="@+id/et_luas_bangunan"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-                        android:inputType="number"
                         android:layout_alignParentStart="true"
-                        android:padding="12dp"
+                        android:layout_marginEnd="40dp"
                         android:backgroundTint="@color/backgroundColor"
-                        android:layout_marginEnd="40dp" />
+                        android:inputType="number"
+                        android:padding="12dp"
+                        android:textColor="@color/black"
+                        tools:ignore="SpeakableTextPresentCheck" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -217,12 +220,13 @@
                         android:id="@+id/et_luas_tanah"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-                        android:inputType="number"
                         android:layout_alignParentStart="true"
-                        android:padding="12dp"
+                        android:layout_marginEnd="40dp"
                         android:backgroundTint="@color/backgroundColor"
-                        android:layout_marginEnd="40dp" />
+                        android:inputType="number"
+                        android:padding="12dp"
+                        android:textColor="@color/black"
+                        tools:ignore="SpeakableTextPresentCheck" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -252,12 +256,13 @@
                         android:id="@+id/et_jumlah_lantai"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-                        android:inputType="number"
                         android:layout_alignParentStart="true"
-                        android:padding="12dp"
+                        android:layout_marginEnd="40dp"
                         android:backgroundTint="@color/backgroundColor"
-                        android:layout_marginEnd="40dp" />
+                        android:inputType="number"
+                        android:padding="12dp"
+                        android:textColor="@color/black"
+                        tools:ignore="SpeakableTextPresentCheck" />
 
                 </RelativeLayout>
 
