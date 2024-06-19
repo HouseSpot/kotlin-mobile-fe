@@ -5,51 +5,10 @@
     android:layout_height="match_parent"
     tools:context=".ui.auth.VendorFormActivity">
 
-    <!-- Toolbar -->
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/appBarPrimary"
-        android:theme="?attr/actionBarTheme"
-        android:popupTheme="?attr/actionBarPopupTheme">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/toolbar_back_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="?attr/homeAsUpIndicator"
-                android:layout_gravity="center_vertical"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:contentDescription="Back" />
-
-            <TextView
-                android:id="@+id/toolbar_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Buat Akun"
-                android:textColor="@android:color/black"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/toolbar_back_button"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.appcompat.widget.Toolbar>
-
     <!-- Content Layout -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/toolbar"
         android:paddingHorizontal="16dp">
 
         <LinearLayout
@@ -143,6 +102,22 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Berapa minimum harga yang anda tetapkan per harinya?"
+                android:layout_marginTop="16dp"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/etFeeMinimum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Minimum Fee (Rp/Hari)"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/rounded_edittext"
+                android:padding="12dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="Dimana lokasi kantor atau layanan anda?"
                 android:layout_marginTop="16dp"
                 android:textColor="@color/black" />
@@ -177,7 +152,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Lampirkan foto portofolio layanan anda"
+                android:text="Lampirkan foto portofolio layanan anda (optional)"
                 android:layout_marginTop="16dp"
                 android:textColor="@color/black" />
 
@@ -193,6 +168,13 @@
                 app:strokeColor="@color/blue"
                 app:strokeWidth="1dp"
                 android:backgroundTint="@android:color/white" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvSelectedImages"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginHorizontal="24dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -232,4 +214,11 @@
                 style="@style/PrimaryButton"/>
         </LinearLayout>
     </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
 </RelativeLayout>
