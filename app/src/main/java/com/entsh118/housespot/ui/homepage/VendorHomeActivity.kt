@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.entsh118.housespot.data.DataStoreManager
 import com.entsh118.housespot.databinding.ActivityVendorHomeBinding
-import com.entsh118.housespot.ui.account.AccountHomepageActivity
 import com.entsh118.housespot.ui.account.AccountVendorActivity
 import com.entsh118.housespot.ui.homepage.adapter.VendorPagerAdapter
 import com.entsh118.housespot.ui.premium.PremiumVendorActivity
@@ -25,7 +24,6 @@ class VendorHomeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        // Set up tab layout with view pager
         val tabLayout = binding.tabLayout
         val viewPager = binding.viewPager
 

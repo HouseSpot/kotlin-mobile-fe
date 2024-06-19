@@ -23,6 +23,12 @@ class CreateAccountViewModel : ViewModel() {
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> get() = _loading
 
+    private val _role = MutableLiveData<String>()
+    val role: LiveData<String> get() = _role
+
+    private val _userId = MutableLiveData<String>()
+    val userId: LiveData<String> get() = _userId
+
     fun register(
         name: String,
         email: String,
@@ -65,6 +71,8 @@ class CreateAccountViewModel : ViewModel() {
                     requestBodyMap["confirmPassword"]!!,
                     profileImage
                 )
+                _role.value = role
+                _userId.value = response.data ?: ""
                 _registrationResult.value = response.message ?: "Registration successful"
                 _isRegistrationSuccess.value = true
             } catch (e: Exception) {

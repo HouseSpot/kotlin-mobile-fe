@@ -1,7 +1,9 @@
 package com.entsh118.housespot.ui.auth
 
+import android.Manifest
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -14,6 +16,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import com.entsh118.housespot.R
@@ -43,12 +47,15 @@ class CreateAccountActivity : AppCompatActivity() {
     private lateinit var etConfirmPassword: ConfirmationPasswordTextField
     private lateinit var role: String
 
+    private val REQUEST_STORAGE_PERMISSION = 1001
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCreateAccountBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Initialize gallery launcher
+        checkAndRequestPermissions()
+
         galleryLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
                 result.data?.data?.let { uri ->
@@ -74,10 +81,38 @@ class CreateAccountActivity : AppCompatActivity() {
         etPhone = binding.etPhone
     }
 
+    private fun checkAndRequestPermissions() {
+        val permissions = arrayOf(
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+        )
+        val permissionResults = permissions.map { permission ->
+            ContextCompat.checkSelfPermission(this, permission)
+        }
+        if (permissionResults.any { it != PackageManager.PERMISSION_GRANTED }) {
+            ActivityCompat.requestPermissions(this, permissions, REQUEST_STORAGE_PERMISSION)
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == REQUEST_STORAGE_PERMISSION) {
+            if (grantResults.isNotEmpty() && grantResults.all { it == PackageManager.PERMISSION_GRANTED }) {
+                // Permissions granted
+            } else {
+                Toast.makeText(this, "Storage permissions are required to upload profile image.", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
     private fun setupToolbar() {
         val toolbar: Toolbar = binding.toolbar
         setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayShowTitleEnabled(false) // Hide default title
+        supportActionBar?.setDisplayShowTitleEnabled(false)
 
         val backButton: ImageView = binding.toolbarBackButton
         backButton.setOnClickListener {
@@ -93,8 +128,9 @@ class CreateAccountActivity : AppCompatActivity() {
 
         viewModel.isRegistrationSuccess.observe(this, Observer { isSuccess ->
             if (isSuccess) {
-                when (role.lowercase()) {
-                    "vendor" -> navigateToVendorForm()
+                val userId = viewModel.userId.value ?: ""
+                when (viewModel.role.value?.lowercase()) {
+                    "vendor" -> navigateToVendorForm(userId)
                     "client" -> navigateToLogin()
                 }
             }
@@ -105,8 +141,9 @@ class CreateAccountActivity : AppCompatActivity() {
         })
     }
 
-    private fun navigateToVendorForm() {
+    private fun navigateToVendorForm(userId: String) {
         val intent = Intent(this, VendorFormActivity::class.java)
+        intent.putExtra("ID", userId)
         startActivity(intent)
         finish()
     }
@@ -139,23 +176,27 @@ class CreateAccountActivity : AppCompatActivity() {
                 Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
             } else if (role.isEmpty()) {
                 Toast.makeText(this, "Role is required. Please, go back to the previous section.", Toast.LENGTH_SHORT).show()
-            }
-            else if (password != confirmPassword) {
+            } else if (password != confirmPassword) {
                 Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show()
             } else {
                 selectedImageUri?.let { uri ->
-                    val imageFile = File(getRealPathFromURI(uri))
-                    val requestBody = RequestBody.create("image/*".toMediaTypeOrNull(), imageFile)
-                    val profileImagePart = MultipartBody.Part.createFormData("profile", imageFile.name, requestBody)
-                    viewModel.register(
-                        name = name,
-                        email = email,
-                        password = password,
-                        confirmPassword = confirmPassword,
-                        phone = phone,
-                        role = role,
-                        profileImage = profileImagePart
-                    )
+                    val imagePath = getRealPathFromURI(uri)
+                    if (imagePath.isNotEmpty()) {
+                        val imageFile = File(imagePath)
+                        val requestBody = RequestBody.create("image/*".toMediaTypeOrNull(), imageFile)
+                        val profileImagePart = MultipartBody.Part.createFormData("profile", imageFile.name, requestBody)
+                        viewModel.register(
+                            name = name,
+                            email = email,
+                            password = password,
+                            confirmPassword = confirmPassword,
+                            phone = phone,
+                            role = role,
+                            profileImage = profileImagePart
+                        )
+                    } else {
+                        Toast.makeText(this, "Unable to get the selected image path.", Toast.LENGTH_SHORT).show()
+                    }
                 } ?: run {
                     Toast.makeText(this, "Please select a profile image", Toast.LENGTH_SHORT).show()
                 }
@@ -178,7 +219,6 @@ class CreateAccountActivity : AppCompatActivity() {
                     if (columnIndex != -1) {
                         result = it.getString(columnIndex)
                     } else {
-                        // Handle the case where the column is not found
                         Toast.makeText(this, "Failed to get file name", Toast.LENGTH_SHORT).show()
                     }
                 }
@@ -210,5 +250,4 @@ class CreateAccountActivity : AppCompatActivity() {
         }
         return path
     }
-
 }

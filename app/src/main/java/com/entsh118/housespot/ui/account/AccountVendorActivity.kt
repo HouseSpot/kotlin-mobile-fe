@@ -21,16 +21,13 @@ class AccountVendorActivity : AppCompatActivity() {
         binding = ActivityAccountVendorBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Load user data
         loadUserData()
 
-        // Set click listeners
         binding.rlProfile.setOnClickListener {
             // Handle profile click
         }
 
         binding.rlLogout.setOnClickListener {
-            // Handle logout click
             lifecycleScope.launch {
                 viewModel.logout()
                 startActivity(Intent(this@AccountVendorActivity, LoginActivity::class.java))
