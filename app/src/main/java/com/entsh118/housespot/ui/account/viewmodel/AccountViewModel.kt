@@ -1,4 +1,4 @@
-package com.entsh118.housespot.ui.account
+package com.entsh118.housespot.ui.account.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
