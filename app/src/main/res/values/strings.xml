@@ -6,6 +6,7 @@
     <string name="tab_text_1">Pesanan Aktif</string>
     <string name="tab_text_2">Riwayat Pesanan</string>
     <string name="select_birth_date">Pilih tanggal</string>
+    <string name="searchbar_hint">Cari vendor</string>
 
     <string-array name="status_array">
         <item>Waiting</item>

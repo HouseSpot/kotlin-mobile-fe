@@ -12,7 +12,7 @@
     app:cardUseCompatPadding="true">
 
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:layout_width="380dp"
 
         android:layout_height="wrap_content">
 
@@ -68,7 +68,7 @@
             android:id="@+id/kontak"
             android:layout_width="100dp"
             android:layout_height="30dp"
-            android:layout_marginStart="150dp"
+            android:layout_marginStart="140dp"
             android:layout_marginTop="100dp"
             android:background="@drawable/contact"
             app:layout_constraintStart_toStartOf="parent"
@@ -84,6 +84,16 @@
             android:text="7 juni 2024"
             android:textColor="@android:color/darker_gray"
             android:textSize="14sp" />
+
+        <RelativeLayout
+            android:layout_width="100dp"
+            android:layout_height="29dp"
+            android:layout_marginStart="245dp"
+            android:layout_marginTop="100dp"
+            android:background="@drawable/feedback"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
 
 
     </RelativeLayout>

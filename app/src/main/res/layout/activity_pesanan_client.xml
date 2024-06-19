@@ -11,26 +11,24 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingHorizontal="0dp">
+        android:orientation="vertical">
 
-        <!-- Tabs -->
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
-            app:tabTextColor="@android:color/white" />
-
-        <!-- ViewPager -->
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/view_pager"
+            app:tabTextColor="@android:color/white"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="16dp" >
+            android:layout_height="wrap_content"/>
 
-        </androidx.viewpager2.widget.ViewPager2>
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="16dp" >
+            </androidx.viewpager2.widget.ViewPager2>
     </LinearLayout>
+    <!-- Content Layout -->
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"

@@ -15,6 +15,7 @@ import com.entsh118.housespot.data.api.response.DataItem
 import com.entsh118.housespot.databinding.FragmentItemListBinding
 import com.entsh118.housespot.databinding.FragmentPesananBinding
 import com.entsh118.housespot.ui.pesanan.adapter.ListPesananAdapter
+import com.entsh118.housespot.ui.pesanan.adapter.ListPesananPasifAdapter
 import com.entsh118.housespot.ui.pesanan.viewmodel.PesananViewModel
 
 /**
@@ -58,19 +59,20 @@ class ItemFragment : Fragment() {
         val rv = binding.rvFollow
 
         if (position == 1){
-            viewModel.listPesananAktif.observe(viewLifecycleOwner) { listFollower ->
-                if (listFollower != null) {
-                    if (listFollower.isNotEmpty()) {
+            viewModel.listPesananAktif.observe(viewLifecycleOwner) { listPesananAktif ->
+                if (listPesananAktif != null) {
+                    if (listPesananAktif.isNotEmpty()) {
                         rv.layoutManager = LinearLayoutManager(activity)
-                        listFollower?.let { setListPesananAktif(it, rv) }
+                        listPesananAktif?.let { setListPesananAktif(it, rv) }
                     }
                 }
             }
         } else {
-            viewModel.listPesananAktif.observe(viewLifecycleOwner) { listFollower ->
-                if (listFollower != null) {
-                    if (listFollower.isNotEmpty()) {
+            viewModel.listPesananPasif.observe(viewLifecycleOwner) { listPesananPasif ->
+                if (listPesananPasif != null) {
+                    if (listPesananPasif.isNotEmpty()) {
                         rv.layoutManager = LinearLayoutManager(activity)
+                        listPesananPasif?.let { setListRiwayatPesanan(it, rv) }
                     }
                 }
             }
@@ -82,8 +84,8 @@ class ItemFragment : Fragment() {
         rv.adapter = adapter
     }
 
-    private fun setListRiwayatPesanan(list: List<DataItem>, rv: RecyclerView){
-        val adapter = ListPesananAdapter(list)
+    private fun setListRiwayatPesanan(list: List<DataItem?>, rv: RecyclerView){
+        val adapter = ListPesananPasifAdapter(list)
         rv.adapter = adapter
     }
 
