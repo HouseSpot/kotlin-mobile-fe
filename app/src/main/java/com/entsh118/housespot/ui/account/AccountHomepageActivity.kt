@@ -26,18 +26,15 @@ class AccountHomepageActivity : AppCompatActivity() {
         binding = ActivityAccountHomepageBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Load user data
         loadUserData()
 
         setupBottomNavigation()
 
-        // Set click listeners
         binding.rlProfile.setOnClickListener {
             // Handle profile click
         }
 
         binding.rlLogout.setOnClickListener {
-            // Handle logout click
             lifecycleScope.launch {
                 viewModel.logout()
                 startActivity(Intent(this@AccountHomepageActivity, LoginActivity::class.java))
@@ -73,7 +70,6 @@ class AccountHomepageActivity : AppCompatActivity() {
                     true
                 }
                 R.id.nav_account -> {
-                    startActivity(Intent(this, AccountHomepageActivity::class.java))
                     true
                 }
                 else -> false

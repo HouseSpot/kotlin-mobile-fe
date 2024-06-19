@@ -39,8 +39,6 @@ class HomePageActivity : AppCompatActivity() {
 
     private fun setupRecyclerView() {
         binding.recommendationsRecyclerview.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        // Set your adapter here, for example:
-        // binding.recommendationsRecyclerview.adapter = RecommendationsAdapter()
     }
 
     private fun loadUserData() {
@@ -55,20 +53,24 @@ class HomePageActivity : AppCompatActivity() {
         Log.d("HomePageActivity", "User name: ${userPreferences.nama}")
         Log.d("HomePageActivity", "User id: ${userPreferences.id}")
         Log.d("HomePageActivity", "User profile: ${userPreferences.profile}")
-        Glide.with(this).load(userPreferences.profile).into(binding.ivProfile)
+
+        val profile = userPreferences.profile
+
+        if (profile != null) {
+            if (profile.isNotEmpty()){
+                binding.ivProfile.setImageUrl(profile)
+            }
+        }
     }
 
     private fun setupServiceNavigations() {
         binding.llEstimasiHarga.setOnClickListener {
-            // Handle service 1 navigation
             val intent = Intent(this, PrediksiFormActivity::class.java)
             startActivity(intent)
         }
     }
 
     private fun loadServiceRecommendations() {
-        // Load your service recommendations here
-        // For example, you can set your RecyclerView adapter with data
     }
 
     private fun setupBottomNavigation() {
