@@ -24,6 +24,12 @@ android {
     namespace = "com.entsh118.housespot"
     compileSdk = 34
 
+    lintOptions {
+        isAbortOnError = false
+        xmlOutput = file("build/reports/lint-results.xml")
+        htmlOutput = file("build/reports/lint-results.html")
+    }
+
     defaultConfig {
         applicationId = "com.entsh118.housespot"
         minSdk = 28

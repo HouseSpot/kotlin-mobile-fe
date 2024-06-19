@@ -28,18 +28,7 @@ class VendorHomeActivity : AppCompatActivity() {
         val viewPager = binding.viewPager
 
         dataStoreManager = DataStoreManager(this)
-        lifecycleScope.launch {
-            val nama = dataStoreManager.userPreferencesFlow.first().nama
-            val profile = dataStoreManager.userPreferencesFlow.first().profile
-            binding.tvGreeting.text = "Hallo, $nama!"
-            binding.tvProjectInfo.text = "Berikut informasi proyekmu!"
-
-            if (profile != null) {
-                if (profile.isNotEmpty()){
-                    binding.ivProfile.setImageUrl(profile)
-                }
-            }
-        }
+        updateUI()
 
         binding.ivSettings.setOnClickListener(){
             startActivity(Intent(this, AccountVendorActivity::class.java))
@@ -56,6 +45,26 @@ class VendorHomeActivity : AppCompatActivity() {
                 else -> "Riwayat Pesanan"
             }
         }.attach()
+    }
+
+    fun updateUI(){
+        lifecycleScope.launch {
+            val nama = dataStoreManager.userPreferencesFlow.first().nama
+            val profile = dataStoreManager.userPreferencesFlow.first().profile
+            binding.tvGreeting.text = "Hallo, $nama!"
+            binding.tvProjectInfo.text = "Berikut informasi proyekmu!"
+
+            if (profile != null) {
+                if (profile.isNotEmpty()){
+                    binding.ivProfile.setImageUrl(profile)
+                }
+            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        updateUI()
     }
     
 }

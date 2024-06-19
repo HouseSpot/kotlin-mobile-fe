@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.account.AccountEditPageActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/appBarPrimary"
+        android:theme="?attr/actionBarTheme"
+        android:popupTheme="?attr/actionBarPopupTheme">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/toolbar_back_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="?attr/homeAsUpIndicator"
+                android:layout_gravity="center_vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:contentDescription="Back" />
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Profil Saya"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/toolbar_back_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
+        android:layout_above="@id/btnSaveProfile"
+        android:layout_marginBottom="30dp"
+        android:padding="16dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/civProfilePicture"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="32dp"
+                android:src="@drawable/ic_account"
+                android:contentDescription="Profile Picture" />
+
+            <Button
+                android:id="@+id/btnChangePhoto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/civProfilePicture"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="12dp"
+                android:drawableLeft="@drawable/ic_upload"
+                android:text="Ganti Foto"
+                android:textColor="@color/black"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:drawablePadding="8dp"
+                style="@style/UploadButtonStyle" />
+
+
+            <RelativeLayout
+                android:id="@+id/profile_info_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btnChangePhoto"
+                android:layout_marginTop="32dp"
+                android:layout_marginHorizontal="32dp"
+                android:padding="16dp"
+                android:background="@drawable/rounded_border"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvNameLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nama"
+                    android:textStyle="bold"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/etName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvNameLabel"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/rounded_edittext"
+                    android:hint="Nama"
+                    android:minHeight="48dp"
+                    android:padding="12dp"
+                    android:textSize="12dp"
+                    tools:ignore="TextSizeCheck" />
+
+                <TextView
+                    android:id="@+id/tvEmailLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/etName"
+                    android:layout_marginTop="16dp"
+                    android:textStyle="bold"
+                    android:text="Email (tidak dapat diubah)"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/etEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvEmailLabel"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/rounded_edittext"
+                    android:editable="false"
+                    android:hint="Email"
+                    android:minHeight="48dp"
+                    android:padding="12dp"
+                    android:textSize="12dp"
+                    tools:ignore="TextSizeCheck" />
+
+                <TextView
+                    android:id="@+id/tvContactLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/etEmail"
+                    android:layout_marginTop="16dp"
+                    android:text="Kontak (WhatsApp)"
+                    android:textStyle="bold"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/etContact"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvContactLabel"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/rounded_edittext"
+                    android:hint="Contact"
+                    android:minHeight="48dp"
+                    android:padding="12dp"
+                    android:textSize="12dp"
+                    tools:ignore="TextSizeCheck" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/extra_info_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/profile_info_container"
+                android:layout_marginTop="32dp"
+                android:layout_marginHorizontal="32dp"
+                android:padding="16dp"
+                android:background="@drawable/rounded_border"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/tv_tipe_layanan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tipe Layanan"
+                    android:textStyle="bold"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/tv_tipe_layanan_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Apa tipe layanan anda?"
+                    android:layout_below="@id/tv_tipe_layanan"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/black" />
+
+                <LinearLayout
+                    android:id="@+id/ll_tipe_layanan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_tipe_layanan_value"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp">
+
+                    <CheckBox
+                        android:id="@+id/checkboxRenovasi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Renovasi"
+                        android:textColor="@color/black"
+                        android:layout_marginEnd="16dp" />
+
+                    <CheckBox
+                        android:id="@+id/checkboxBangunDariAwal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Bangun dari awal"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_jenis_properti"
+                    android:layout_below="@id/ll_tipe_layanan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="Jenis Properti"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/tv_jenis_properti_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_jenis_properti"
+                    android:text="Sebutkan jenis properti apa saja yang anda layani?"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/etPropertyType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_jenis_properti_value"
+                    android:hint="Jenis Properti"
+                    android:layout_marginTop="8dp"
+                    android:textSize="12dp"
+                    android:background="@drawable/rounded_edittext"
+                    android:padding="12dp" />
+
+                <TextView
+                    android:id="@+id/tv_jenis_jasa"
+                    android:layout_below="@id/etPropertyType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:layout_marginTop="12dp"
+                    android:text="Jenis Penyedia Jasa"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/tv_jenis_jasa_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_jenis_jasa"
+                    android:text="Apakah anda menyediakan jasa kontraktor atau tukang?"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/black" />
+
+                <LinearLayout
+                    android:id="@+id/ll_jenis_jasa"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_jenis_jasa_value"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp">
+
+                    <CheckBox
+                        android:id="@+id/checkboxKontraktor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Kontraktor"
+                        android:textColor="@color/black"
+                        android:layout_marginEnd="16dp" />
+
+                    <CheckBox
+                        android:id="@+id/checkboxTukang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tukang"
+                        android:textColor="@color/black"/>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_fee_minimum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/ll_jenis_jasa"
+                    android:text="Fee Minimum"
+                    android:textStyle="bold"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/tv_fee_minimum_value"
+                    android:layout_width="wrap_content"
+                    android:layout_below="@id/tv_fee_minimum"
+                    android:layout_height="wrap_content"
+                    android:text="Berapa minimum harga yang anda tetapkan per harinya?"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/etFeeMinimum"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_fee_minimum_value"
+                    android:hint="Minimum Fee (Rp/Hari)"
+                    android:layout_marginTop="8dp"
+                    android:textSize="12dp"
+                    android:background="@drawable/rounded_edittext"
+                    android:padding="12dp" />
+
+                <TextView
+                    android:id="@+id/tv_lokasi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/etFeeMinimum"
+                    android:text="Lokasi"
+                    android:textStyle="bold"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/tv_lokasi_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_lokasi"
+                    android:text="Dimana lokasi kantor atau layanan anda?"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/etOfficeLocation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_lokasi_value"
+                    android:hint="Lokasi Kantor"
+                    android:layout_marginTop="8dp"
+                    android:textSize="12dp"
+                    android:background="@drawable/rounded_edittext"
+                    android:padding="12dp" />
+
+                <TextView
+                    android:id="@+id/tv_deskripsi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/etOfficeLocation"
+                    android:text="Deskripsi Layanan"
+                    android:textStyle="bold"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/tv_deskripsi_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_deskripsi"
+                    android:text="Tuliskan secara lengkap deskripsi layanan anda!"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/etServiceDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_deskripsi_value"
+                    android:hint="Deskripsi Layanan"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/rounded_edittext"
+                    android:padding="12dp"
+                    android:textSize="12dp"
+                    android:minHeight="100dp"
+                    android:gravity="top" />
+
+                <TextView
+                    android:id="@+id/tv_portofolio_label"
+                    android:layout_width="wrap_content"
+                    android:textStyle="bold"
+                    android:layout_marginTop="8dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/etServiceDescription"
+                    android:text="Portofolio"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/tv_portofolio_label_value"
+                    android:layout_below="@id/tv_portofolio_label"
+                    android:layout_marginTop="4dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tambahkan foto portofolio layanan anda (optional)"
+                    android:textColor="@color/black" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnGallery"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_portofolio_label_value"
+                    android:text="Galeri"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginHorizontal="16dp"
+                    style="@style/SecondaryButton"
+                    android:textColor="@color/blue"
+                    app:strokeColor="@color/blue"
+                    app:strokeWidth="1dp"
+                    android:backgroundTint="@android:color/white" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvSelectedImages"
+                    android:layout_below="@id/btnGallery"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginHorizontal="24dp" />
+
+            </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/btnSaveProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="16dp"
+        android:layout_marginHorizontal="32dp"
+        android:text="Simpan Profil"
+        style="@style/PrimaryButton"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:padding="12dp"
+        android:drawablePadding="8dp" />
+
+</RelativeLayout>
