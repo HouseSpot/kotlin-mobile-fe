@@ -34,6 +34,17 @@ jobs:
         run: |
           echo "${{ secrets.GOOGLE_SERVICES_JSON }}" | base64 --decode > ./app/google-services.json
 
+      - name: Run Lint
+        run: ./gradlew lintDebug
+        continue-on-error: false
+
+      - name: Archive Lint Reports
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: lint-reports
+          path: app/build/reports/lint-results.html
+
       - name: Build with Gradle
         run: ./gradlew build
 
