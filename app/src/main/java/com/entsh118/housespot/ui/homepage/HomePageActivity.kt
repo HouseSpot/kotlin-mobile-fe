@@ -39,6 +39,11 @@ class HomePageActivity : AppCompatActivity() {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        loadUserData()
+    }
+
     private fun setupRecyclerView() {
         binding.recommendationsRecyclerview.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
     }
@@ -84,7 +89,6 @@ class HomePageActivity : AppCompatActivity() {
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> {
-                    // Handle home navigation
                     true
                 }
                 R.id.nav_orders -> {
