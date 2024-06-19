@@ -5,6 +5,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 object ApiConfig {
 
@@ -13,6 +14,7 @@ object ApiConfig {
 
     var BASE_URL_AUTH: String? = "${BASE_URL}users/"
     var BASE_URL_ORDER: String? = "${BASE_URL}orders/"
+    var BASE_URL_VENDOR: String? = "${BASE_URL}vendor/"
 
     fun getAuthService(): AuthApiService {
         val loggingInterceptor = if (BuildConfig.DEBUG) {
@@ -66,5 +68,27 @@ object ApiConfig {
             .client(client)
             .build()
         return retrofit.create(OrderApiService::class.java)
+    }
+
+    fun getVendorService(): VendorApiService {
+        val loggingInterceptor = if (BuildConfig.DEBUG) {
+            HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+        } else {
+            HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.NONE)
+        }
+
+        val client = OkHttpClient.Builder()
+            .addInterceptor(loggingInterceptor)
+            .connectTimeout(60, TimeUnit.SECONDS)
+            .writeTimeout(60, TimeUnit.SECONDS)
+            .readTimeout(60, TimeUnit.SECONDS)
+            .build()
+
+        val retrofit = Retrofit.Builder()
+            .baseUrl(BASE_URL_VENDOR!!)
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(client)
+            .build()
+        return retrofit.create(VendorApiService::class.java)
     }
 }
