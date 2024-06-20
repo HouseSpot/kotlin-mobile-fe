@@ -11,6 +11,7 @@ import com.entsh118.housespot.databinding.ActivityAccountHomepageBinding
 import com.entsh118.housespot.ui.account.viewmodel.AccountViewModel
 import com.entsh118.housespot.ui.auth.LoginActivity
 import com.entsh118.housespot.ui.homepage.HomePageActivity
+import com.entsh118.housespot.ui.pesanan.PesananClientActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.launch
 
@@ -82,6 +83,7 @@ class AccountHomepageActivity : AppCompatActivity() {
                     true
                 }
                 R.id.nav_orders -> {
+                    startActivity(Intent(this, PesananClientActivity::class.java))
                     true
                 }
                 R.id.nav_account -> {

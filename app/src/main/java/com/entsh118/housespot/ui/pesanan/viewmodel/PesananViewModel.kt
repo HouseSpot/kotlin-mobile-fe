@@ -17,6 +17,8 @@ class PesananViewModel: ViewModel() {
     private val _listPesananAktif = MutableLiveData<List<DataItem?>?>()
     val listPesananAktif: MutableLiveData<List<DataItem?>?> = _listPesananAktif
 
+    private val _listPesananPasif = MutableLiveData<List<DataItem?>?>()
+    val listPesananPasif: MutableLiveData<List<DataItem?>?> = _listPesananPasif
 
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> = _loading
@@ -37,7 +39,18 @@ class PesananViewModel: ViewModel() {
                 Log.e("RESPONSE", response.isSuccessful.toString())
                 if (response.isSuccessful) {
                     Log.e("FITUR LIST ORDER8","START LIST ORDER")
-                    _listPesananAktif.value = response.body()?.data
+                    val activeOrders = mutableListOf<DataItem?>()
+                    val passiveOrders = mutableListOf<DataItem?>()
+
+                    response.body()?.data?.forEach { item ->
+                        if (item?.status == "REJECTED" || item?.status == "COMPLETED") {
+                            passiveOrders.add(item)
+                        } else {
+                            activeOrders.add(item)
+                        }
+                    }
+                    _listPesananAktif.value = activeOrders
+                    _listPesananPasif.value = passiveOrders
                     Log.e("LIST ORDER9", _listPesananAktif.toString().take(1))
                 } else {
                     _error.value = response.message()

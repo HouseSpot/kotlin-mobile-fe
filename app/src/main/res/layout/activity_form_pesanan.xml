@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.layananjasa.FormPesananActivity">
 
-
     <TextView
         android:id="@+id/header_background"
         android:layout_width="match_parent"
@@ -15,120 +14,129 @@
         android:background="@color/backgroundColor"
         android:gravity="center"
         android:text="Pesan Layanan"
-        android:textColor="#0D47A1"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <ProgressBar
         android:id="@+id/progressIndicator"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@id/header_background"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Content Layout -->
     <ScrollView
         android:id="@+id/scroll_view_form"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
+        android:padding="16dp"
         app:layout_constraintTop_toBottomOf="@id/header_background"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:paddingHorizontal="16dp">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-    <LinearLayout
-            android:layout_height="500dp"
-            android:layout_marginBottom="100dp"
+        <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="16dp">
 
-                    <TextView
-                        android:id="@+id/description"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Layanan apa yang anda butuhkan?"
-                        android:textColor="@color/black"
-                        android:textSize="14sp" />
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Layanan apa yang Anda butuhkan?"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
 
             <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginBottom="16dp">
 
                 <RadioButton
                     android:id="@+id/renovasi"
                     android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:text="Renovasi" />
+                    android:layout_height="wrap_content"
+                    android:text="Renovasi"
+                    android:textSize="14sp" />
 
                 <RadioButton
                     android:id="@+id/bangun"
                     android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:text="Bangun dari awal" />
+                    android:layout_height="wrap_content"
+                    android:text="Bangun dari awal"
+                    android:textSize="14sp" />
             </RadioGroup>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Apa jenis properti anda?"
-                        android:textColor="@color/black"
-                        android:padding="12dp"
-                        android:textSize="14sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Apa jenis properti Anda?"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
 
-        <EditText
-            android:id="@+id/jenisProperti"
-            android:layout_width="330dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rounded_border"
-            android:hint="Ceritakan jenis properti"
-            android:minHeight="48dp"
-            android:padding="12dp"
-            android:textSize="12sp" />
+            <EditText
+                android:id="@+id/jenisProperti"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_border"
+                android:hint="Ceritakan jenis properti"
+                android:minHeight="48dp"
+                android:padding="12dp"
+                android:textSize="14sp"
+                android:layout_marginBottom="16dp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Berapa budget total untuk layanan ini?"
-                        android:textColor="@color/black"
-                        android:padding="12dp"
-                        android:textSize="14sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Berapa budget total untuk layanan ini?"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
 
-        <EditText
-            android:id="@+id/biaya"
-            android:layout_width="330dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rounded_border"
-            android:hint="Masukan jumlah perkiraan biaya"
-            android:minHeight="48dp"
-            android:padding="12dp"
-            android:textSize="12sp" />
+            <EditText
+                android:id="@+id/biaya"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_border"
+                android:hint="Masukan jumlah perkiraan biaya"
+                android:minHeight="48dp"
+                android:padding="12dp"
+                android:textSize="14sp"
+                android:layout_marginBottom="16dp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Kapan Anda membutuhkan layanan?"
-                        android:textColor="@color/black"
-                        android:padding="12dp"
-                        android:textSize="14sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kapan Anda membutuhkan layanan?"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/startLayananLayout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="330dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="2dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="24dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 app:endIconDrawable="@drawable/ic_calendar"
                 app:endIconMode="custom"
                 app:endIconTint="?attr/colorSecondary"
                 app:hintEnabled="false"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
+                android:layout_marginBottom="16dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/startLayananText"
@@ -142,30 +150,25 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Kapan Anda ingin layanan ini selesai?"
-                        android:textColor="@color/black"
-                        android:padding="12dp"
-                        android:textSize="14sp" />
-
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kapan Anda ingin layanan ini selesai?"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/endDateEditTextLayout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="330dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="2dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="24dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 app:endIconDrawable="@drawable/ic_calendar"
                 app:endIconMode="custom"
                 app:endIconTint="?attr/colorSecondary"
                 app:hintEnabled="false"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
+                android:layout_marginBottom="16dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/endDateEditText"
@@ -179,64 +182,69 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Deskripsikan secara lebih lengkap tentang proyek Anda?"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Deskripsikan secara lebih lengkap tentang proyek Anda?"
-                        android:textColor="@color/black"
-                        android:padding="12dp"
-                        android:textSize="14sp" />
+            <EditText
+                android:id="@+id/deskripsi"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@drawable/rounded_border"
+                android:hint="Enter you poll title..."
+                android:padding="12dp"
+                android:textSize="14sp"
+                android:layout_marginBottom="16dp" />
 
-                    <EditText
-                        android:id="@+id/deskripsi"
-                        android:layout_width="330dp"
-                        android:layout_height="100dp"
-                        android:background="@drawable/rounded_border"
-                        android:hint="Enter you poll title..."
-                        android:padding="12dp"
-                        android:textSize="12sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Siapa yang akan menyediakan material konstruksi?"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Siapa yang akan menyediakan material konstruksi?"
-                        android:textColor="@color/black"
-                        android:padding="12dp"
-                        android:textSize="14sp" />
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="16dp">
+                <RadioButton android:id="@+id/radio_pirates"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kontraktor"
+                    android:textSize="14sp"/>
+                <RadioButton android:id="@+id/radio_ninjas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Saya"
+                    android:textSize="14sp"/>
+            </RadioGroup>
 
-                    <RadioGroup
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                        <RadioButton android:id="@+id/radio_pirates"
-                            android:layout_width="wrap_content"
-                            android:layout_height="40dp"
-                            android:text="Kontraktor"/>
-                        <RadioButton android:id="@+id/radio_ninjas"
-                            android:layout_width="wrap_content"
-                            android:layout_height="40dp"
-                            android:text="Saya"/>
-                    </RadioGroup>
-
-
-        <Button
-            android:id="@+id/addStory"
-            android:layout_width="361dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="32dp"
-            android:text="Pesan Layanan"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent" />
+            <TextView
+                android:id="@+id/form_instruction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Please fill out all fields before submitting the form."
+                android:textColor="@color/rejectedColor"
+                android:textSize="10sp"
+                android:paddingHorizontal="12dp"
+                android:gravity="center"
+                android:layout_marginBottom="4dp" />
+            <Button
+                android:id="@+id/addStory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pesan Layanan"
+                android:enabled="false"
+                android:layout_marginBottom="32dp"
+                style="@style/ButtonClient"/>
         </LinearLayout>
-
-
     </ScrollView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
-
