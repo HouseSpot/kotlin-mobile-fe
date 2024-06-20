@@ -6,8 +6,8 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
-import com.entsh118.housespot.databinding.ActivityAccountHomepageBinding
 import com.entsh118.housespot.databinding.ActivityAccountVendorBinding
+import com.entsh118.housespot.ui.account.viewmodel.AccountViewModel
 import com.entsh118.housespot.ui.auth.LoginActivity
 import kotlinx.coroutines.launch
 
@@ -24,7 +24,18 @@ class AccountVendorActivity : AppCompatActivity() {
         loadUserData()
 
         binding.rlProfile.setOnClickListener {
-            // Handle profile click
+            lifecycleScope.launch {
+                viewModel.userPreferencesFlow.collect { user ->
+                    user?.let {
+                        val userId = it.id
+                        val peran = it.peran
+                        val intent = Intent(this@AccountVendorActivity, AccountProfilePageActivity::class.java)
+                        intent.putExtra("userId", userId)
+                        intent.putExtra("peran", peran)
+                        startActivity(intent)
+                    }
+                }
+            }
         }
 
         binding.rlLogout.setOnClickListener {
@@ -34,6 +45,12 @@ class AccountVendorActivity : AppCompatActivity() {
                 finish()
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        loadUserData()
+
     }
 
     private fun loadUserData() {

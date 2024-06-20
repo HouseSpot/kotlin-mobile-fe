@@ -38,6 +38,14 @@ class DataStoreManager(context: Context) {
         }
     }
 
+    suspend fun updateUserPreferences(nama:String, noHp:String, profileImage:String? = null) {
+        dataStore.edit { preferences ->
+            preferences[NAMA] = nama
+            preferences[PROFILE] = profileImage ?: preferences[PROFILE].toString()
+            preferences[NO_HP] = noHp
+        }
+    }
+
     val userPreferencesFlow = dataStore.data
         .catch { exception ->
             if (exception is IOException) {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -7,19 +7,48 @@
     android:layout_height="match_parent"
     tools:context=".ui.layananjasa.ListVendorActivity">
 
-    <View
-        android:id="@+id/header_background"
-        android:layout_width="0dp"
-        android:layout_height="75dp"
-        android:background="#86C5FF"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginBottom="10dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
+        android:background="@color/backgroundColor"
+        app:layout_constraintTop_toTopOf="parent" >
+
+        <TextView
+            android:id="@+id/rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="16dp"
+            android:text="Layanan Vendor"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/fabFilter"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_marginStart="310dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:text=""
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:icon="@drawable/baseline_filter_alt_24"
+            app:iconTint="@android:color/white" />
+    </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header_background"
         android:id="@+id/rv_list_vendor"
-        android:layout_width="410dp"
-        android:layout_height="588dp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="80dp" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_width="407dp"
+        android:layout_height="679dp"
+        android:layout_marginTop="60dp" />
+
+</RelativeLayout>

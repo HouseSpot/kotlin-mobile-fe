@@ -5,6 +5,7 @@ import com.entsh118.housespot.data.api.request.LoginRequest
 import com.entsh118.housespot.data.api.response.LoginResponse
 import com.entsh118.housespot.data.api.response.OrderDetailsResponse
 import com.entsh118.housespot.data.api.response.RegisterResponse
+import com.entsh118.housespot.data.api.response.UpdateUserResponse
 import com.entsh118.housespot.data.api.response.VendorResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -15,6 +16,7 @@ import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.Multipart
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Part
 import retrofit2.http.Path
 
@@ -40,4 +42,21 @@ interface AuthApiService {
     fun getUserProfile(
         @Path("id_user") idUser: String
     ): Call<UserPreferences>
+
+    @Multipart
+    @PUT("update/{id_user}")
+    suspend fun updateUser(
+        @Path("id_user") idUser: String,
+        @Part("nama") nama: RequestBody,
+        @Part("no_hp") noHp: RequestBody,
+        @Part profile: MultipartBody.Part
+    ): UpdateUserResponse
+
+    @Multipart
+    @PUT("update/{id_user}")
+    suspend fun updateUserWithoutImage(
+        @Path("id_user") idUser: String,
+        @Part("nama") nama: RequestBody,
+        @Part("no_hp") noHp: RequestBody
+    ): UpdateUserResponse
 }
