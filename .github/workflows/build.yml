@@ -94,20 +94,23 @@ jobs:
         run: ./gradlew build
 
       - name: Sign APK
+        uses: r0adkll/sign-android-release@v1
+        id: sign_app
+        with:
+          releaseDirectory: app/build/outputs/apk/release
+          signingKeyBase64: ${{ secrets.KEYSTORE_BASE64 }}
+          alias: ${{ secrets.KEY_ALIAS }}
+          keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
+          keyPassword: ${{ secrets.KEY_PASSWORD }}
         env:
-          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
-          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
-          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
-          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
-          ANDROID_SDK_ROOT: ${{ runner.tool_cache }}/android-sdk
+          BUILD_TOOLS_VERSION: "34.0.0"
         run: |
           echo $ANDROID_SDK_ROOT
           echo $ANDROID_HOME
-          ls -R ${ANDROID_HOME}/build-tools/30.0.3/
-          ls -R ${ANDROID_SDK_ROOT}/build-tools/30.0.3/
-          echo "$KEYSTORE_BASE64" | base64 --decode > keystore.jks
-          jarsigner -verbose -sigalg SHA256withRSA -digestalg SHA-256 -keystore keystore.jks -storepass $KEYSTORE_PASSWORD -keypass $KEY_PASSWORD app/build/outputs/apk/release/app-release-unsigned.apk $KEY_ALIAS
-          ${ANDROID_HOME}/build-tools/30.0.3/zipalign -v 4 app/build/outputs/apk/release/app-release-unsigned.apk app/build/outputs/apk/release/app-release.apk
+          ls /usr/local/lib/android/sdk/build-tools/
+          BUILD_TOOL_VERSION=$(ls /usr/local/lib/android/sdk/build-tools/ | tail -n 1)
+          echo "BUILD_TOOL_VERSION=$BUILD_TOOL_VERSION" >> $GITHUB_ENV
+          echo Last build tool version is: $BUILD_TOOL_VERSION
 
       - name: List build outputs
         run: ls -R app/build/outputs/
@@ -136,12 +139,18 @@ jobs:
           draft: false
           prerelease: false
 
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: Artifact ${{ steps.generate_version.outputs.version }}
+          path: ${{steps.sign_app.outputs.signedReleaseFile}}
+
       - name: Upload Release Asset
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./app/build/outputs/apk/release/app-release.apk
+          asset_path: ${{ steps.sign_app.outputs.signedReleaseFile }}
           asset_name: app-release.apk
           asset_content_type: application/vnd.android.package-archive
