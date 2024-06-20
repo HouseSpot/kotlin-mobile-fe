@@ -1,21 +1,16 @@
 package com.entsh118.housespot.ui.pesanan
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import com.entsh118.housespot.R
 import com.entsh118.housespot.data.api.response.DataItem
-import com.entsh118.housespot.databinding.FragmentItemListBinding
 import com.entsh118.housespot.databinding.FragmentPesananBinding
 import com.entsh118.housespot.ui.pesanan.adapter.ListPesananAdapter
-import com.entsh118.housespot.ui.pesanan.adapter.ListPesananPasifAdapter
 import com.entsh118.housespot.ui.pesanan.viewmodel.PesananViewModel
 
 /**
@@ -85,7 +80,7 @@ class ItemFragment : Fragment() {
     }
 
     private fun setListRiwayatPesanan(list: List<DataItem?>, rv: RecyclerView){
-        val adapter = ListPesananPasifAdapter(list)
+        val adapter = ListPesananAdapter(list)
         rv.adapter = adapter
     }
 
