@@ -48,6 +48,8 @@ class PesananClientActivity : AppCompatActivity() {
             tab.text = resources.getString(TAB_TITLES[position])
         }.attach()
 
+        setupBottomNavigation()
+
     }
 
     private fun loadUserData() {
@@ -55,6 +57,27 @@ class PesananClientActivity : AppCompatActivity() {
             val userPreferences = dataStoreManager.userPreferencesFlow.first()
             viewModel.getPesananAktif(userPreferences.id)
         }
+    }
+
+    private fun setupBottomNavigation() {
+        val bottomNavigationView: BottomNavigationView = binding.bottomNavigation
+        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_home -> {
+                    startActivity(Intent(this, HomePageActivity::class.java))
+                    true
+                }
+                R.id.nav_orders -> {
+                    true
+                }
+                R.id.nav_account -> {
+                    startActivity(Intent(this, AccountHomepageActivity::class.java))
+                    true
+                }
+                else -> false
+            }
+        }
+        bottomNavigationView.selectedItemId = R.id.nav_orders
     }
 
     companion object {

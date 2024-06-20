@@ -4,6 +4,7 @@ import com.entsh118.housespot.data.api.model.Order
 import com.entsh118.housespot.data.api.response.DataItem
 import com.entsh118.housespot.data.api.response.FileUploadResponse
 import com.entsh118.housespot.data.api.response.OrderClientResponse
+import com.entsh118.housespot.data.api.response.RatingResponse
 import com.entsh118.housespot.data.api.response.RegisterResponse
 import com.entsh118.housespot.data.api.response.VendorResponseItem
 import okhttp3.MultipartBody
@@ -39,15 +40,24 @@ interface ClientApiService {
     ): Call<Void>
 
     @Multipart
-
     @POST("rating/add")
     suspend fun uploadFeedback(
-        @Part("id_client") idClient: String,
-        @Part("id_vendor") idVendor: String,
-        @Part image: MultipartBody.Part,
+        @Part("id_client") idClient: RequestBody,
+        @Part("id_vendor") idVendor: RequestBody,
+        @Part image: MultipartBody.Part?,
         @Part("message") message: RequestBody,
-        @Part("rating") rating: RequestBody,
-    ):  Call<Void>
+        @Part("rating") rating: RequestBody
+    ): RatingResponse
+
+    @Multipart
+    @POST("rating/add")
+    fun uploadFeedbackWithoutImage(
+        @Part("id_client") idClient: RequestBody,
+        @Part("id_vendor") idVendor: RequestBody,
+        @Part("message") message: RequestBody,
+        @Part("rating") rating: RequestBody
+    ): Call<Void>
+
 
     @GET("vendor/filter")
     fun getVendorFilter(

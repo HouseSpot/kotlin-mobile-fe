@@ -4,6 +4,7 @@ import com.entsh118.housespot.data.api.model.UserPreferences
 import com.entsh118.housespot.data.api.request.LoginRequest
 import com.entsh118.housespot.data.api.response.LoginResponse
 import com.entsh118.housespot.data.api.response.OrderDetailsResponse
+import com.entsh118.housespot.data.api.response.ProfileResponse
 import com.entsh118.housespot.data.api.response.RegisterResponse
 import com.entsh118.housespot.data.api.response.UpdateUserResponse
 import com.entsh118.housespot.data.api.response.VendorResponse
@@ -41,7 +42,7 @@ interface AuthApiService {
     @GET("{id_user}")
     fun getUserProfile(
         @Path("id_user") idUser: String
-    ): Call<UserPreferences>
+    ): Call<ProfileResponse>
 
     @Multipart
     @PUT("update/{id_user}")
