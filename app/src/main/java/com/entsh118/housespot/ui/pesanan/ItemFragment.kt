@@ -85,7 +85,7 @@ class ItemFragment : Fragment() {
     }
 
     private fun setListRiwayatPesanan(list: List<DataItem?>, rv: RecyclerView){
-        val adapter = ListPesananPasifAdapter(list)
+        val adapter = ListPesananAdapter(list)
         rv.adapter = adapter
     }
 
