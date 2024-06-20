@@ -1,11 +1,13 @@
 package com.entsh118.housespot.ui.pesanan.adapter
 
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.entsh118.housespot.data.api.response.DataItem
 import com.entsh118.housespot.databinding.ItemPesananClientBinding
+import com.entsh118.housespot.ui.pesanan.FormFeedbackActivity
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -27,6 +29,14 @@ class ListPesananAdapter(private val listPesanan: List<DataItem?>): RecyclerView
 
         holder.binding.waktu.text = "$startDate - $endDate"
         holder.binding.status.text = item?.status
+
+        holder.binding.buttonFeedback.setOnClickListener {
+            item?.let { selectedItem ->
+                val intent = Intent(holder.itemView.context, FormFeedbackActivity::class.java)
+                intent.putExtra(FormFeedbackActivity.DETAIL_PESANAN, selectedItem)
+                holder.itemView.context.startActivity(intent)
+            }
+        }
     }
 
     override fun getItemCount(): Int {
