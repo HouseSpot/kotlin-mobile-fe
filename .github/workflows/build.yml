@@ -41,6 +41,7 @@ jobs:
         run: ./gradlew lintDebug
         continue-on-error: true
 
+
       - name: Archive Lint Reports
         if: failure()
         uses: actions/upload-artifact@v2
@@ -97,6 +98,7 @@ jobs:
           echo "$KEYSTORE_BASE64" | base64 --decode > keystore.jks
           jarsigner -verbose -sigalg SHA256withRSA -digestalg SHA-256 -keystore keystore.jks -storepass $KEYSTORE_PASSWORD -keypass $KEY_PASSWORD app/build/outputs/apk/release/app-release-unsigned.apk $KEY_ALIAS
           ${ANDROID_HOME}/build-tools/30.0.3/zipalign -v 4 app/build/outputs/apk/release/app-release-unsigned.apk app/build/outputs/apk/release/app-release.apk
+
 
       - name: List build outputs
         run: ls -R app/build/outputs/
