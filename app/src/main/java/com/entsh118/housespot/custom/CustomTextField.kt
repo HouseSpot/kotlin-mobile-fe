@@ -28,7 +28,7 @@ abstract class CustomTextField @JvmOverloads constructor(
             }
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                validate(s)
+//                validate(s)
             }
 
             override fun afterTextChanged(s: Editable) {

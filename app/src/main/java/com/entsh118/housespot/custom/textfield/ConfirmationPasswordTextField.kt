@@ -17,6 +17,7 @@ class ConfirmationPasswordTextField @JvmOverloads constructor(
         compoundDrawablePadding = 16
         setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_password, 0, 0, 0)
         hint = "Konfirmasi Kata Sandi"
+        inputType = android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD
     }
 
     override fun validate(s: CharSequence) {
