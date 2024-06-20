@@ -26,7 +26,7 @@ jobs:
         uses: android-actions/setup-android@v2
         with:
           api-level: 30
-          components: build-tools;30.0.3
+          build-tools: 30.0.3
 
       - name: Create local.properties
         run: |
@@ -76,7 +76,7 @@ jobs:
         uses: android-actions/setup-android@v2
         with:
           api-level: 30
-          components: build-tools;30.0.3
+          build-tools: 30.0.3
 
       - name: Create local.properties
         run: |
@@ -99,10 +99,15 @@ jobs:
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+          ANDROID_SDK_ROOT: ${{ runner.tool_cache }}/android-sdk
         run: |
+          echo $ANDROID_SDK_ROOT
+          echo $ANDROID_HOME
+          ls -R ${ANDROID_HOME}/build-tools/30.0.3/
+          ls -R ${ANDROID_SDK_ROOT}/build-tools/30.0.3/
           echo "$KEYSTORE_BASE64" | base64 --decode > keystore.jks
           jarsigner -verbose -sigalg SHA256withRSA -digestalg SHA-256 -keystore keystore.jks -storepass $KEYSTORE_PASSWORD -keypass $KEY_PASSWORD app/build/outputs/apk/release/app-release-unsigned.apk $KEY_ALIAS
-          ${ANDROID_SDK_ROOT}/build-tools/30.0.3/zipalign -v 4 app/build/outputs/apk/release/app-release-unsigned.apk app/build/outputs/apk/release/app-release.apk
+          ${ANDROID_HOME}/build-tools/30.0.3/zipalign -v 4 app/build/outputs/apk/release/app-release-unsigned.apk app/build/outputs/apk/release/app-release.apk
 
       - name: List build outputs
         run: ls -R app/build/outputs/
