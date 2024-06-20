@@ -38,6 +38,7 @@ jobs:
         run: ./gradlew lintDebug
         continue-on-error: true
 
+
       - name: Archive Lint Reports
         if: failure()
         uses: actions/upload-artifact@v2
