@@ -62,4 +62,39 @@ class ListVendorViewModel: ViewModel() {
 
     )
     }
+
+
+    fun filterVendors(
+        lokasiKantor: String?,
+        tipeLayanan: String?,
+        jenisJasa: String?,
+        namaVendor: String?,
+        hargaMinimum: Long?,
+        hargaMaksimum: Long?
+    ) {
+        val client = ApiConfig.getClientService().filterVendors(
+            tipeLayanan = tipeLayanan,
+            jenisJasa = jenisJasa,
+            namaVendor = namaVendor,
+            hargaMinimum = hargaMinimum,
+            hargaMaksimum = hargaMaksimum
+        )
+
+        client.enqueue(object : Callback<List<VendorResponseItem>> {
+            override fun onResponse(
+                call: Call<List<VendorResponseItem>>,
+                response: Response<List<VendorResponseItem>>
+            ) {
+                if (response.isSuccessful) {
+                    _listVendor.value = response.body()
+                } else {
+                    _error.value = response.message()
+                }
+            }
+
+            override fun onFailure(call: Call<List<VendorResponseItem>>, t: Throwable) {
+                _error.value = t.message
+            }
+        })
+    }
 }
