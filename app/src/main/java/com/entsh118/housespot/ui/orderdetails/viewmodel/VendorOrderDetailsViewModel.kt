@@ -7,10 +7,10 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.entsh118.housespot.data.api.model.UserPreferences
 import com.entsh118.housespot.data.api.request.UpdateOrderRequest
 import com.entsh118.housespot.data.api.response.Data
 import com.entsh118.housespot.data.api.response.OrderDetailsResponse
+import com.entsh118.housespot.data.api.response.ProfileResponse
 import com.entsh118.housespot.data.api.response.UpdateOrderResponse
 import com.entsh118.housespot.data.api.retrofit.ApiConfig
 import kotlinx.coroutines.Dispatchers
@@ -24,8 +24,8 @@ class VendorOrderDetailsViewModel(application: Application) : AndroidViewModel(a
     private val _orderDetails = MutableLiveData<Data?>()
     val orderDetails: LiveData<Data?> get() = _orderDetails
 
-    private val _userDetails = MutableLiveData<UserPreferences?>()
-    val userDetails: LiveData<UserPreferences?> get() = _userDetails
+    private val _userDetails = MutableLiveData<ProfileResponse?>()
+    val userDetails: LiveData<ProfileResponse?> get() = _userDetails
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> get() = _isLoading
@@ -69,9 +69,10 @@ class VendorOrderDetailsViewModel(application: Application) : AndroidViewModel(a
         viewModelScope.launch {
             try {
                 val service = ApiConfig.getAuthService()
-                service.getUserProfile(userId).enqueue(object : Callback<UserPreferences> {
-                    override fun onResponse(call: Call<UserPreferences>, response: Response<UserPreferences>) {
+                service.getUserProfile(userId).enqueue(object : Callback<ProfileResponse> {
+                    override fun onResponse(call: Call<ProfileResponse>, response: Response<ProfileResponse>) {
                         if (response.isSuccessful) {
+                            Log.d("VendorOrderDetailsViewModel", "User details response: ${response.body()}")
                             _userDetails.postValue(response.body())
                         } else {
                             _userDetails.postValue(null)  // Handle error case
@@ -80,7 +81,7 @@ class VendorOrderDetailsViewModel(application: Application) : AndroidViewModel(a
                         Log.d("VendorOrderDetailsViewModel", "User details: ${response.body()}")
                     }
 
-                    override fun onFailure(call: Call<UserPreferences>, t: Throwable) {
+                    override fun onFailure(call: Call<ProfileResponse>, t: Throwable) {
                         _isLoading.postValue(false)
                         _userDetails.postValue(null)
                         Log.e("VendorOrderDetailsViewModel", "Error loading user details", t)

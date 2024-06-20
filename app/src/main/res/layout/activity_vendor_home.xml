@@ -136,6 +136,7 @@
                 android:id="@+id/tab_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:contentDescription="Tabs for Orders"
                 android:layout_marginTop="16dp">
             </com.google.android.material.tabs.TabLayout>
 

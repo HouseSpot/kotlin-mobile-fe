@@ -1,16 +1,19 @@
 package com.entsh118.housespot.data.api.response
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-
+import kotlinx.parcelize.Parcelize
+@Parcelize
 data class OrderClientResponse(
 
 	@field:SerializedName("data")
-	val data: List<DataItem?>? = null,
+	val data: List<DataItem>? = null,
 
 	@field:SerializedName("status")
 	val status: String? = null
-)
+):Parcelable
 
+@Parcelize
 data class DataItem(
 
 	@field:SerializedName("serviceType")
@@ -45,4 +48,4 @@ data class DataItem(
 
 	@field:SerializedName("status")
 	val status: String? = null
-)
+): Parcelable

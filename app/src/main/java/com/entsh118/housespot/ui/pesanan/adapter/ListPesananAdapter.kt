@@ -18,7 +18,7 @@ class ListPesananAdapter(private val listPesanan: List<DataItem?>): RecyclerView
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = listPesanan[position]
-        holder.binding.namaVendor.text = item?.idVendor
+        holder.binding.namaVendor.text = "${item?.serviceType} oleh Vendor ${item?.idVendor}"
         holder.binding.budget.text = "Rp ${item?.budget} ,-"
 
         // Konversi startDate ke format tanggal bulan tahun

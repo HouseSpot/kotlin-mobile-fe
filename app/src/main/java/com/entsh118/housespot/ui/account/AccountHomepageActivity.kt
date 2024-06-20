@@ -7,13 +7,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.entsh118.housespot.R
-import com.entsh118.housespot.data.api.model.UserPreferences
 import com.entsh118.housespot.databinding.ActivityAccountHomepageBinding
+import com.entsh118.housespot.ui.account.viewmodel.AccountViewModel
 import com.entsh118.housespot.ui.auth.LoginActivity
 import com.entsh118.housespot.ui.homepage.HomePageActivity
 import com.entsh118.housespot.ui.pesanan.PesananClientActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class AccountHomepageActivity : AppCompatActivity() {
@@ -31,7 +30,18 @@ class AccountHomepageActivity : AppCompatActivity() {
         setupBottomNavigation()
 
         binding.rlProfile.setOnClickListener {
-            // Handle profile click
+            lifecycleScope.launch {
+                viewModel.userPreferencesFlow.collect { user ->
+                    user?.let {
+                        val userId = it.id
+                        val peran = it.peran
+                        val intent = Intent(this@AccountHomepageActivity, AccountProfilePageActivity::class.java)
+                        intent.putExtra("userId", userId)
+                        intent.putExtra("peran", peran)
+                        startActivity(intent)
+                    }
+                }
+            }
         }
 
         binding.rlLogout.setOnClickListener {
@@ -58,6 +68,12 @@ class AccountHomepageActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        loadUserData()
+
+    }
+
     private fun setupBottomNavigation() {
         val bottomNavigationView: BottomNavigationView = binding.bottomNavigation
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
@@ -67,6 +83,7 @@ class AccountHomepageActivity : AppCompatActivity() {
                     true
                 }
                 R.id.nav_orders -> {
+                    startActivity(Intent(this, PesananClientActivity::class.java))
                     true
                 }
                 R.id.nav_account -> {

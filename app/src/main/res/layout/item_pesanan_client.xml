@@ -60,6 +60,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <RelativeLayout
+            android:id="@+id/buttonFeedback"
             android:layout_width="120dp"
             android:layout_height="30dp"
             android:layout_marginStart="230dp"

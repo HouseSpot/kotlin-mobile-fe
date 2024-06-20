@@ -3,9 +3,11 @@ package com.entsh118.housespot.ui.orderdetails
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -69,16 +71,21 @@ class VendorOrderDetailsActivity : AppCompatActivity() {
                 binding.tvNamaClientValue.text = user.nama
 
                 binding.llKontakClient.setOnClickListener {
-                    val noHp = user.noHp
-                    val phoneNumber = if (noHp.startsWith("0")) {
-                        "62" + noHp.substring(1)
+                    val noHp = user.no_hp
+                    Log.d("VendorOrderDetailsActivity", "Phone number: $noHp")
+                    if (noHp != null) {
+                        val phoneNumber = if (noHp.startsWith("0")) {
+                            "62" + noHp.substring(1)
+                        } else {
+                            noHp
+                        }
+                        val url = "https://wa.me/$phoneNumber"
+                        val intent = Intent(Intent.ACTION_VIEW)
+                        intent.data = Uri.parse(url)
+                        startActivity(intent)
                     } else {
-                        noHp
+                        Toast.makeText(this, "Phone number is not available", Toast.LENGTH_SHORT).show()
                     }
-                    val url = "https://wa.me/$phoneNumber"
-                    val intent = Intent(Intent.ACTION_VIEW)
-                    intent.data = Uri.parse(url)
-                    startActivity(intent)
                 }
             }
         })
@@ -96,14 +103,14 @@ class VendorOrderDetailsActivity : AppCompatActivity() {
 
         binding.spinnerStatus.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                val selectedStatus = statuses[position]
                 if (isInitialSpinnerSetup) {
                     isInitialSpinnerSetup = false
                     return
                 }
 
-                val selectedStatus = statuses[position]
                 val orderId = intent.getStringExtra("order_id")
-                if (orderId != null) {
+                if (orderId != null && selectedStatus != viewModel.orderDetails.value?.status && !isInitialSpinnerSetup) {
                     viewModel.updateOrderStatus(orderId, selectedStatus)
                 }
             }

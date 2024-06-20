@@ -2,7 +2,9 @@ package com.entsh118.housespot.data.api.retrofit
 
 import com.entsh118.housespot.data.api.model.Order
 import com.entsh118.housespot.data.api.response.DataItem
+import com.entsh118.housespot.data.api.response.FileUploadResponse
 import com.entsh118.housespot.data.api.response.OrderClientResponse
+import com.entsh118.housespot.data.api.response.RatingResponse
 import com.entsh118.housespot.data.api.response.RegisterResponse
 import com.entsh118.housespot.data.api.response.VendorResponseItem
 import okhttp3.MultipartBody
@@ -45,4 +47,33 @@ interface ClientApiService {
         @Query("jenis_jasa") jenisJasa: String?, // Jenis jasa (dalam bentuk string)
         @Query("nama_vendor") namaVendor: String? // Nama vendor untuk pencarian
     ): Call<List<VendorResponseItem>>
+
+    @Multipart
+    @POST("rating/add")
+    suspend fun uploadFeedback(
+        @Part("id_client") idClient: RequestBody,
+        @Part("id_vendor") idVendor: RequestBody,
+        @Part image: MultipartBody.Part?,
+        @Part("message") message: RequestBody,
+        @Part("rating") rating: RequestBody
+    ): RatingResponse
+
+    @Multipart
+    @POST("rating/add")
+    fun uploadFeedbackWithoutImage(
+        @Part("id_client") idClient: RequestBody,
+        @Part("id_vendor") idVendor: RequestBody,
+        @Part("message") message: RequestBody,
+        @Part("rating") rating: RequestBody
+    ): Call<Void>
+
+
+    @GET("vendor/filter")
+    fun getVendorFilter(
+        @Query("lokasi_kantor") lokasiKantor: String,
+        @Query("tipe_layanan") tipeLayanan: String,
+        @Query("jenis_jasa") jenisJasa: String,
+        @Query("nama_vendor") namaVendor: String = ""
+    ): Call<List<VendorResponseItem>>
+
 }

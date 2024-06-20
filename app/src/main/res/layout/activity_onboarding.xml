@@ -5,21 +5,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center_horizontal"
+    android:layout_centerHorizontal="true"
+    android:layout_centerInParent="true"
+    android:gravity="center"
     android:padding="16dp"
     android:background="@android:color/white"
     tools:context=".ui.auth.OnboardingActivity">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="278dp"
-        android:layout_weight="1" />
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="60dp"
+        android:src="@drawable/logo"
+        android:contentDescription="@string/housespot_logo" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Rekan Menggapai Properti Impianmu!"
+        android:text="Rekan Menggapai\n Properti Impianmu!"
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="@android:color/black"
@@ -29,10 +36,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="is simply dummy text of the printing and typesettin is simply dummy text of the printing and typesettin"
+        android:text="Solusi Tepat untuk Kebutuhan Rumah Anda"
         android:textSize="14sp"
         android:textColor="@android:color/darker_gray"
         android:gravity="center"
+        android:textStyle="italic"
         android:layout_marginTop="8dp"
         style="@style/BodyText" />
 
@@ -41,7 +49,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Bergabung Sekarang"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:layout_marginHorizontal="40dp"
         style="@style/PrimaryButton" />
 
@@ -51,6 +59,7 @@
         android:layout_height="wrap_content"
         android:text="Masuk dengan Google"
         app:icon="@drawable/ic_google"
+        android:visibility="gone"
         android:layout_marginTop="8dp"
         android:layout_marginHorizontal="40dp"
         style="@style/SecondaryButton" />
@@ -60,7 +69,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
-        android:layout_marginTop="16dp">
+        android:layout_marginTop="8dp">
 
         <TextView
             android:layout_width="wrap_content"
