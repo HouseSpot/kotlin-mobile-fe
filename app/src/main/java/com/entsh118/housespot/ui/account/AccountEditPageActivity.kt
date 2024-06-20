@@ -122,54 +122,25 @@ class AccountEditPageActivity : AppCompatActivity() {
     }
 
     private fun setupObservers() {
-        viewModel.updateSuccess.observe(this) { isSuccess ->
-            if (isSuccess) {
-                Log.d("AccountEditPageActivity", "Profile updated successfully")
 
-                if(isVendor){
-                    val id = userId
-                    val tipeLayanan = mutableListOf<String>()
-                    if (binding.checkboxRenovasi.isChecked) {
-                        tipeLayanan.add(binding.checkboxRenovasi.text.toString())
-                    }
-                    if (binding.checkboxBangunDariAwal.isChecked) {
-                        tipeLayanan.add(binding.checkboxBangunDariAwal.text.toString())
-                    }
-                    val jenisProperti = binding.etPropertyType.text.toString()
-                    val jasaKontraktor = mutableListOf<String>()
-                    if (binding.checkboxKontraktor.isChecked) {
-                        jasaKontraktor.add(binding.checkboxKontraktor.text.toString())
-                    }
-                    if (binding.checkboxTukang.isChecked) {
-                        jasaKontraktor.add(binding.checkboxTukang.text.toString())
-                    }
-                    val lokasiKantor = binding.etOfficeLocation.text.toString()
-                    val deskripsiLayanan = binding.etServiceDescription.text.toString()
-                    val feeMinimum = binding.etFeeMinimum.text.toString()
-                    val iklanPersetujuan = true
+        if(!isVendor) {
+            viewModel.updateSuccess.observe(this) { isSuccess ->
+                if (isSuccess) {
+                    Log.d("AccountEditPageActivity", "Profile updated successfully")
 
-                    val portofolioPaths = selectedImageUris.mapNotNull { getRealPortfolioPathFromURI(it) }
-
-                    viewModel.updateVendor(
-                        id,
-                        tipeLayanan,
-                        jenisProperti,
-                        jasaKontraktor,
-                        lokasiKantor,
-                        deskripsiLayanan,
-                        iklanPersetujuan,
-                        feeMinimum,
-                        portofolioPaths
-                    )
                 }
             }
         }
 
-        viewModel.updateVendorResult.observe(this) { result ->
-            if (result.status == "success") {
-                Toast.makeText(this, "Vendor profile updated successfully", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(this, "Failed to update vendor profile", Toast.LENGTH_SHORT).show()
+        if(isVendor) {
+            viewModel.updateVendorResult.observe(this) { result ->
+                if (result.status == "success") {
+                    Toast.makeText(this, "Vendor profile updated successfully", Toast.LENGTH_SHORT)
+                        .show()
+                } else {
+                    Toast.makeText(this, "Failed to update vendor profile", Toast.LENGTH_SHORT)
+                        .show()
+                }
             }
         }
 
@@ -262,7 +233,7 @@ class AccountEditPageActivity : AppCompatActivity() {
                 if (columnIndex != -1) {
                     path = it.getString(columnIndex)
                 } else {
-                    Toast.makeText(this, "Failed to get image path", Toast.LENGTH_SHORT).show()
+                    Log.d("AccountEditPageActivity", "Failed to get image path")
                 }
             }
         }
@@ -394,12 +365,50 @@ class AccountEditPageActivity : AppCompatActivity() {
                 )
             } else {
                 Toast.makeText(this, "Unable to get the selected image path.", Toast.LENGTH_SHORT).show()
+                return
             }
         } ?: run {
             viewModel.updateUser(
                 id = userId,
                 name = name,
                 phone = phone
+            )
+        }
+
+        if(isVendor){
+            val id = userId
+            val tipeLayanan = mutableListOf<String>()
+            if (binding.checkboxRenovasi.isChecked) {
+                tipeLayanan.add(binding.checkboxRenovasi.text.toString())
+            }
+            if (binding.checkboxBangunDariAwal.isChecked) {
+                tipeLayanan.add(binding.checkboxBangunDariAwal.text.toString())
+            }
+            val jenisProperti = binding.etPropertyType.text.toString()
+            val jasaKontraktor = mutableListOf<String>()
+            if (binding.checkboxKontraktor.isChecked) {
+                jasaKontraktor.add(binding.checkboxKontraktor.text.toString())
+            }
+            if (binding.checkboxTukang.isChecked) {
+                jasaKontraktor.add(binding.checkboxTukang.text.toString())
+            }
+            val lokasiKantor = binding.etOfficeLocation.text.toString()
+            val deskripsiLayanan = binding.etServiceDescription.text.toString()
+            val feeMinimum = binding.etFeeMinimum.text.toString()
+            val iklanPersetujuan = true
+
+            val portofolioPaths = selectedImageUris.mapNotNull { getRealPortfolioPathFromURI(it) }
+
+            viewModel.updateVendor(
+                id,
+                tipeLayanan,
+                jenisProperti,
+                jasaKontraktor,
+                lokasiKantor,
+                deskripsiLayanan,
+                iklanPersetujuan,
+                feeMinimum,
+                portofolioPaths
             )
         }
 

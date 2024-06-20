@@ -5,6 +5,7 @@ import android.widget.Toast
 import android.content.Intent
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -72,6 +73,7 @@ class FormPesananActivity : AppCompatActivity() {
         }
 
         binding.addStory.setOnClickListener {
+
             val idPemesan = userPreferences.id // Example ID, replace with actual ID
             val idVendor = detail?.id
             val serviceType = if (binding.renovasi.isChecked) "Renovasi" else "Bangun dari awal"
@@ -81,6 +83,15 @@ class FormPesananActivity : AppCompatActivity() {
             val endDate = binding.endDateEditText.text.toString()
             val projectDescription = binding.deskripsi.text.toString()
             val materialProvider = if (binding.radioPirates.isChecked) "Kontraktor" else "Saya"
+
+            val dateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+            val startDateParsed = dateFormat.parse(startDate)
+            val endDateParsed = dateFormat.parse(endDate)
+
+            if (startDateParsed != null && endDateParsed != null && startDateParsed.after(endDateParsed)) {
+                Toast.makeText(this, "Tanggal mulai tidak boleh lebih besar dari tanggal selesai", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
 
             val orderRequest =
                 OrderRequest(
@@ -133,6 +144,11 @@ class FormPesananActivity : AppCompatActivity() {
                 (binding.renovasi.isChecked || binding.radioPirates.isChecked || binding.radioNinjas.isChecked)
 
         binding.addStory.isEnabled = isAllFieldsFilled
+        if (isAllFieldsFilled) {
+            binding.formInstruction.visibility = View.GONE
+        } else{
+            binding.formInstruction.visibility = View.VISIBLE
+        }
     }
 
     private fun loadUserData() {
@@ -161,12 +177,11 @@ class FormPesananActivity : AppCompatActivity() {
             .setStart(startDate)
             .setEnd(endDate)
             .setOpenAt(today)
-            .setValidator(DateValidatorPointBackward.now())
             .build()
 
         val datePickerBuilder = MaterialDatePicker.Builder.datePicker()
-            .setTitleText(getString(R.string.select_birth_date))
-            .setSelection(endDate)
+            .setTitleText("Pilih Tanggal")
+            .setSelection(today)
             .setCalendarConstraints(constraints)
             .setInputMode(MaterialDatePicker.INPUT_MODE_CALENDAR)
 
@@ -182,7 +197,6 @@ class FormPesananActivity : AppCompatActivity() {
             checkAllFields()
         }
     }
-
     private fun backToDashboard() {
         val intent = Intent(this, PesananClientActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
