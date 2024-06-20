@@ -3,7 +3,7 @@ package com.entsh118.housespot.data.api.model
 data class Vendor(
     val tipeLayanan: List<String?>,
     val profile: String,
-    val rating: Any,
+    val rating: Double,
     val deskripsiLayanan: String,
     val iklanPersetujuan: String,
     val pemilikInfo: PemilikInfo,
@@ -26,6 +26,13 @@ data class Vendor(
         "Office Location",
         listOf("Contractor Service")
     )
+
+    companion object {
+
+        var sortByAscRating = Comparator<Vendor> { o1, o2 -> o1.rating.toInt() - o2.rating.toInt() }
+        var sortByDescRating = Comparator<Vendor> { o1, o2 -> o2.rating.toInt()- o1.rating.toInt() }
+    }
+
 }
 
 data class PemilikInfo(

@@ -3,6 +3,8 @@ package com.entsh118.housespot.ui.layananjasa
 import android.os.Bundle
 import android.widget.Toast
 import android.content.Intent
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -22,7 +24,6 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
-
 class FormPesananActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFormPesananBinding
     private val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
@@ -39,6 +40,36 @@ class FormPesananActivity : AppCompatActivity() {
         loadUserData()
 
         val detail = intent.getParcelableExtra<VendorResponseItem>(DETAIL_VENDOR)
+
+        val textFields = listOf(
+            binding.jenisProperti,
+            binding.biaya,
+            binding.startLayananText,
+            binding.endDateEditText,
+            binding.deskripsi
+        )
+
+        val radioButtons = listOf(
+            binding.renovasi,
+            binding.radioPirates,
+            binding.radioNinjas
+        )
+
+        textFields.forEach { field ->
+            field.addTextChangedListener(object : TextWatcher {
+                override fun afterTextChanged(s: Editable?) {
+                    checkAllFields()
+                }
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+            })
+        }
+
+        radioButtons.forEach { radioButton ->
+            radioButton.setOnCheckedChangeListener { _, _ ->
+                checkAllFields()
+            }
+        }
 
         binding.addStory.setOnClickListener {
             val idPemesan = userPreferences.id // Example ID, replace with actual ID
@@ -63,7 +94,6 @@ class FormPesananActivity : AppCompatActivity() {
                     projectDescription = projectDescription,
                     materialProvider = materialProvider
                 )
-
 
             if (orderRequest != null) {
                 orderViewModel.addOrder(
@@ -94,6 +124,17 @@ class FormPesananActivity : AppCompatActivity() {
 
     }
 
+    private fun checkAllFields() {
+        val isAllFieldsFilled = binding.jenisProperti.text.isNotEmpty() &&
+                binding.biaya.text.isNotEmpty() &&
+                binding.startLayananText.text.toString().isNotEmpty() &&
+                binding.endDateEditText.text.toString().isNotEmpty() &&
+                binding.deskripsi.text.isNotEmpty() &&
+                (binding.renovasi.isChecked || binding.radioPirates.isChecked || binding.radioNinjas.isChecked)
+
+        binding.addStory.isEnabled = isAllFieldsFilled
+    }
+
     private fun loadUserData() {
         lifecycleScope.launch {
             userPreferences = dataStoreManager.userPreferencesFlow.first()
@@ -110,22 +151,12 @@ class FormPesananActivity : AppCompatActivity() {
     }
 
     private fun pickDate(jenis: String) {
-        // Get the current date in milliseconds
         val today = System.currentTimeMillis()
-
-        // Set up the calendar instance
         val calendar = Calendar.getInstance(TimeZone.getDefault())
-        // Set up the start date as today
         val startDate = today
-
-        // Set up the end date as 25 years from now
         calendar.add(Calendar.YEAR, 50)
-        // val startDate = calendar.timeInMillis
-
         val endDate = calendar.timeInMillis
 
-
-        // Configure constraints to restrict the dates
         val constraints = CalendarConstraints.Builder()
             .setStart(startDate)
             .setEnd(endDate)
@@ -133,7 +164,6 @@ class FormPesananActivity : AppCompatActivity() {
             .setValidator(DateValidatorPointBackward.now())
             .build()
 
-        // Build the date picker
         val datePickerBuilder = MaterialDatePicker.Builder.datePicker()
             .setTitleText(getString(R.string.select_birth_date))
             .setSelection(endDate)
@@ -149,6 +179,7 @@ class FormPesananActivity : AppCompatActivity() {
             } else {
                 binding.startLayananText.setText(date)
             }
+            checkAllFields()
         }
     }
 
