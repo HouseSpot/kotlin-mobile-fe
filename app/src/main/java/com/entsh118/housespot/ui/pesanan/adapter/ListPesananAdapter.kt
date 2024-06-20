@@ -22,7 +22,7 @@ class ListPesananAdapter(private val listPesanan: List<DataItem?>): RecyclerView
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = listPesanan[position]
-        holder.binding.tvOrderTitle.text = "${item?.serviceType} oleh Vendor ${item?.idVendor}"
+        holder.binding.tvOrderTitle.text = "${item?.serviceType} oleh ${item?.idVendor}"
         holder.binding.tvOrderBudget.text = "Rp ${item?.budget} ,-"
 
         // Konversi startDate ke format tanggal bulan tahun
@@ -32,8 +32,7 @@ class ListPesananAdapter(private val listPesanan: List<DataItem?>): RecyclerView
         holder.binding.tvOrderDate.text = "$startDate - $endDate"
         holder.binding.tvOrderStatus.text = item?.status
 
-        holder.binding.kontak.visibility = if ( (item?.status=="ONGOING") || (item?.status=="WAITING"))
-            View.VISIBLE else View.GONE
+        holder.binding.kontak.visibility = if  (item?.status=="ONGOING") View.VISIBLE else View.GONE
         holder.binding.buttonFeedback.visibility = if ( item?.status=="COMPLETED") View.VISIBLE else View.GONE
 
         if (item?.status=="COMPLETED") {
