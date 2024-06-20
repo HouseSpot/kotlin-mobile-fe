@@ -2,6 +2,7 @@ package com.entsh118.housespot.data.api.retrofit
 
 import com.entsh118.housespot.data.api.model.Order
 import com.entsh118.housespot.data.api.response.DataItem
+import com.entsh118.housespot.data.api.response.FileUploadResponse
 import com.entsh118.housespot.data.api.response.OrderClientResponse
 import com.entsh118.housespot.data.api.response.RegisterResponse
 import com.entsh118.housespot.data.api.response.VendorResponseItem
@@ -36,5 +37,24 @@ interface ClientApiService {
         @Field("projectDescription") projectDescription: String,
         @Field("materialProvider") materialProvider: String
     ): Call<Void>
+
+    @Multipart
+
+    @POST("rating/add")
+    suspend fun uploadFeedback(
+        @Part("id_client") idClient: String,
+        @Part("id_vendor") idVendor: String,
+        @Part image: MultipartBody.Part,
+        @Part("message") message: RequestBody,
+        @Part("rating") rating: RequestBody,
+    ):  Call<Void>
+
+    @GET("vendor/filter")
+    fun getVendorFilter(
+        @Query("lokasi_kantor") lokasiKantor: String,
+        @Query("tipe_layanan") tipeLayanan: String,
+        @Query("jenis_jasa") jenisJasa: String,
+        @Query("nama_vendor") namaVendor: String = ""
+    ): Call<List<VendorResponseItem>>
 
 }
