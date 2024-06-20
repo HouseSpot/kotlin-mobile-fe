@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="Sort &amp; Filter"
+            android:text="Filter"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -46,94 +46,119 @@
         android:orientation="vertical"
         android:padding="10dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="5dp"
+            android:text="Tipe Layanan"
+            android:textColor="@color/gray"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroupTipeLayanan"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <RadioButton
-                android:id="@+id/cbAZ"
+            <com.google.android.material.chip.Chip
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
+                android:text="Renovasi"
+                android:checkable="true"
+                android:checked="false" />
 
-            <TextView
+            <com.google.android.material.chip.Chip
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:text="A-Z"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:text="Bangun dari awal"
+                android:checkable="true"
+                android:checked="false" />
 
-        </LinearLayout>
+        </com.google.android.material.chip.ChipGroup>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="5dp"
+            android:text="Jenis Jasa"
+            android:textColor="@color/gray"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroupJenisJasa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tukang"
+                android:checkable="true"
+                android:checked="false" />
+
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kontraktor"
+                android:checkable="true"
+                android:checked="false" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="5dp"
+            android:text="Range Harga"
+            android:textColor="@color/gray"
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
 
-            <RadioButton
-                android:id="@+id/cbZA"
-                android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/hargaMinimum"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
+                android:hint="Rp. Minimum"
+               android:layout_marginEnd="20dp"
+                android:padding="12dp"
+                android:textSize="12sp"
+                android:background="@drawable/rounded_border" />
 
-            <TextView
-                android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/hargaMaksimum"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:text="Z-A"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:hint="Rp. Maksimum"
+                android:padding="12dp"
+                android:textSize="12sp"
+                android:background="@drawable/rounded_border" />
 
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/cbTerdekat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:text="Rating Tertinggi"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/cbTerjauh"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:text="Rating Terendah"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
-
-        </LinearLayout>
 
     </LinearLayout>
 
+        <Button
+            android:id="@+id/button_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/edt_description"
+            android:text="Terapkan filter"
+            android:layout_marginTop="16dp"/>
+
+</LinearLayout>
 </LinearLayout>

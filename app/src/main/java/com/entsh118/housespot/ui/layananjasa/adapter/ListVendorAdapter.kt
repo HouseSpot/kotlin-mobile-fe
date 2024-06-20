@@ -26,7 +26,8 @@ class ListVendorAdapter(private val listVendor: List<VendorResponseItem>): Recyc
         val vendor = listVendor[position]
         holder.binding.description.text = vendor.deskripsiLayanan
         holder.binding.harga.text = "Start from Rp.${vendor.feeMinimum},-"
-        holder.binding.rating.text = vendor.rating.toString()
+        val formattedRating = String.format("%.2f", vendor.rating)
+        holder.binding.rating.text = formattedRating
         holder.binding.titletxt.text = vendor.pemilikInfo?.nama
 
         // Check if portofolio is not empty before loading image

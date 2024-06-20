@@ -37,9 +37,11 @@ class DetailJasaActivity : AppCompatActivity() {
 
     private fun setupAction(detail: VendorResponseItem) {
         binding.description.text = detail.deskripsiLayanan
-        binding.rating.text = detail.rating.toString()
+        val formattedRating = String.format("%.2f", detail.rating)
+        binding.rating.text = formattedRating
         binding.namaVendor.text = detail.pemilikInfo?.nama
-        binding.lokasi.text = detail.lokasiKantor
+        binding.textLokasi.text = detail.lokasiKantor
+        binding.harga.text = "Rp. ${detail.feeMinimum},- / day"
         // Set the type of property
         binding.jenisProperti.text = detail.jenisProperti
         // Set the vendor's services

@@ -39,6 +39,12 @@ interface ClientApiService {
         @Field("materialProvider") materialProvider: String
     ): Call<Void>
 
+    @GET("vendor/filter")
+    fun filterVendors(
+        @Query("tipe_layanan") tipeLayanan: String?, // Jenis layanan (dalam bentuk string)
+        @Query("jenis_jasa") jenisJasa: String?, // Jenis jasa (dalam bentuk string)
+    ): Call<List<VendorResponseItem>>
+
     @Multipart
     @POST("rating/add")
     suspend fun uploadFeedback(
