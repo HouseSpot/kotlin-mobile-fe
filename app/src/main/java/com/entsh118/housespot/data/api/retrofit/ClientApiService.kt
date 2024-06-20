@@ -39,6 +39,15 @@ interface ClientApiService {
         @Field("materialProvider") materialProvider: String
     ): Call<Void>
 
+    @GET("vendor/filter")
+    fun filterVendors(
+        @Query("harga_minimum") hargaMinimum: Long?, // Harga minimum
+        @Query("harga_maksimum") hargaMaksimum: Long?, // Harga maksimum
+        @Query("tipe_layanan") tipeLayanan: String?, // Jenis layanan (dalam bentuk string)
+        @Query("jenis_jasa") jenisJasa: String?, // Jenis jasa (dalam bentuk string)
+        @Query("nama_vendor") namaVendor: String? // Nama vendor untuk pencarian
+    ): Call<List<VendorResponseItem>>
+
     @Multipart
     @POST("rating/add")
     suspend fun uploadFeedback(
