@@ -7,33 +7,29 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.OpenableColumns
+import android.view.View
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.Observer
 import com.entsh118.housespot.data.DataStoreManager
 import com.entsh118.housespot.data.api.response.DataItem
 import com.entsh118.housespot.databinding.ActivityFormFeedbackBinding
-import androidx.lifecycle.Observer
 import com.entsh118.housespot.ui.reduceFileImage
 import com.entsh118.housespot.ui.uriToFile
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
-import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
-import okhttp3.RequestBody.Companion.asRequestBody
-import okhttp3.RequestBody.Companion.toRequestBody
+import okhttp3.RequestBody
 import java.io.File
 
 class FormFeedbackActivity : AppCompatActivity() {
-
+    private lateinit var galleryLauncher: ActivityResultLauncher<Intent>
     private lateinit var binding: ActivityFormFeedbackBinding
     private val viewModel: FormFeedbackViewModel by viewModels()
-    private lateinit var galleryLauncher: ActivityResultLauncher<Intent>
     private var selectedImageUri: Uri? = null
     private lateinit var detail: DataItem
     private lateinit var dataStoreManager: DataStoreManager
@@ -48,12 +44,21 @@ class FormFeedbackActivity : AppCompatActivity() {
         // Retrieve detail from intent
         detail = intent.getParcelableExtra<DataItem>(DETAIL_PESANAN)!!
 
+        galleryLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                result.data?.data?.let { uri ->
+                    selectedImageUri = uri
+                    val fileName = getFileName(uri)
+                }
+            }
+        }
         // Setup listeners for UI buttons
         setupListeners()
     }
 
     private fun setupListeners() {
-        binding.galeriButton.setOnClickListener { startGallery() }
+        binding.galeriButton.setOnClickListener { openGallery() }
+
         binding.uploadButton.setOnClickListener {
             val rating = binding.rating.text.toString()
             val message = binding.feedback.text.toString()
@@ -64,41 +69,72 @@ class FormFeedbackActivity : AppCompatActivity() {
                 Toast.makeText(this, "Please fill all fields and select an image", Toast.LENGTH_SHORT).show()
             } else {
                 selectedImageUri?.let { uri ->
-                    val imageFile = uriToFile(uri, this).reduceFileImage()
-                    val requestImageFile = imageFile.asRequestBody("image/jpeg".toMediaType())
-                         val multipartBody = MultipartBody.Part.createFormData(
-                            "photo",
-                            imageFile.name,
-                            requestImageFile
-                        )
+                    val imagePath = getRealPathFromURI(uri)
+                    if (imagePath.isNotEmpty()) {
+                        val imageFile = File(imagePath)
+                        val requestBody = RequestBody.create("image/*".toMediaTypeOrNull(), imageFile)
+                        val profileImagePart = MultipartBody.Part.createFormData("profile", imageFile.name, requestBody)
                         viewModel.uploadFeedback(
                             idClient = idClient,
                             idVendor = idVendor,
-                            image = multipartBody,
+                            image = profileImagePart,
                             message = message,
                             rating = rating
                         )
+                    } else {
+                        Toast.makeText(this, "Unable to get the selected image path.", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
-
-            viewModel.feedbackResult.observe(this, Observer { result ->
-                result.fold(
-                    onSuccess = { message ->
-                        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-                    },
-                    onFailure = { throwable ->
-                        Toast.makeText(this, "Error: ${throwable.message}", Toast.LENGTH_SHORT).show()
-                    }
-                )
-                backToDashboard()
-            })
-
         }
+
+        viewModel.feedbackResult.observe(this, Observer { result ->
+            result.fold(
+                onSuccess = { message ->
+                    Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+                },
+                onFailure = { throwable ->
+                    Toast.makeText(this, "Error: ${throwable.message}", Toast.LENGTH_SHORT).show()
+                }
+            )
+            backToDashboard()
+        })
+    }
+
+
+
+    private fun getRealPathFromURI(uri: Uri): String {
+        var path = ""
+        val projection = arrayOf(MediaStore.Images.Media.DATA)
+        val cursor = contentResolver.query(uri, projection, null, null, null)
+        cursor?.use {
+            if (it.moveToFirst()) {
+                val columnIndex = it.getColumnIndex(MediaStore.Images.Media.DATA)
+                if (columnIndex != -1) {
+                    path = it.getString(columnIndex)
+                } else {
+                    Toast.makeText(this, "Failed to get image path", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+        return path
+    }
+
+    private fun backToDashboard() {
+        val intent = Intent(this, PesananClientActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        }
+        startActivity(intent)
+        finish()
     }
 
     private fun openGallery() {
         val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         galleryLauncher.launch(intent)
+    }
+
+    companion object {
+        const val DETAIL_PESANAN = "DETAIL_PESANAN"
     }
 
     private fun getFileName(uri: Uri): String {
@@ -125,55 +161,4 @@ class FormFeedbackActivity : AppCompatActivity() {
         }
         return result ?: "image.jpg"
     }
-
-    private fun getRealPathFromURI(uri: Uri): String {
-        var path = ""
-        val projection = arrayOf(MediaStore.Images.Media.DATA)
-        val cursor = contentResolver.query(uri, projection, null, null, null)
-        cursor?.use {
-            if (it.moveToFirst()) {
-                val columnIndex = it.getColumnIndex(MediaStore.Images.Media.DATA)
-                if (columnIndex != -1) {
-                    path = it.getString(columnIndex)
-                } else {
-                    Toast.makeText(this, "Failed to get image path", Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
-        return path
-    }
-
-    companion object {
-        const val DETAIL_PESANAN = "DETAIL_PESANAN"
-    }
-
-    private fun backToDashboard() {
-        val intent = Intent(this, PesananClientActivity::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-        }
-        startActivity(intent)
-        finish()
-    }
-
-    private val launcherGallery = registerForActivityResult(
-        ActivityResultContracts.PickVisualMedia()
-    ) { uri: Uri? ->
-        if (uri != null) {
-            selectedImageUri = uri
-            showImage()
-        } else {
-        }
-    }
-
-    private fun startGallery() {
-        // TODO: Mendapatkan gambar dari Gallery.
-        launcherGallery.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
-    }
-    private fun showImage() {
-        // TODO: Menampilkan gambar sesuai Gallery yang dipilih.
-        selectedImageUri?.let {
-            binding.previewImageView.setImageURI(it)
-        }
-    }
-
 }
