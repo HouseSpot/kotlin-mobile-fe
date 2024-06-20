@@ -1,12 +1,19 @@
 package com.entsh118.housespot.ui.pesanan.adapter
 
+import android.content.Context
 import android.content.Intent
+import android.graphics.drawable.GradientDrawable
+import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.compose.ui.text.toUpperCase
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.entsh118.housespot.R
 import com.entsh118.housespot.data.api.response.DataItem
 import com.entsh118.housespot.databinding.ItemPesananClientBinding
 import com.entsh118.housespot.ui.pesanan.FormFeedbackActivity
@@ -22,7 +29,7 @@ class ListPesananAdapter(private val listPesanan: List<DataItem?>): RecyclerView
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = listPesanan[position]
-        holder.binding.tvOrderTitle.text = "${item?.serviceType} oleh ${item?.idVendor}"
+        holder.binding.tvOrderTitle.text = "${item?.serviceType} oleh ${item?.vendorInfo?.nama}"
         holder.binding.tvOrderBudget.text = "Rp ${item?.budget} ,-"
 
         // Konversi startDate ke format tanggal bulan tahun
@@ -42,8 +49,51 @@ class ListPesananAdapter(private val listPesanan: List<DataItem?>): RecyclerView
                 holder.itemView.context.startActivity(intent)
             }
         }
+        val statusColor = when (item?.status) {
+            "WAITING" -> R.color.waitingColor
+            "ONGOING" -> R.color.ongoingColor
+            "COMPLETED" -> R.color.completedColor
+            "REJECTED" -> R.color.rejectedColor
+            else -> R.color.black
+        }
+        holder.binding.tvOrderStatus.setBackgroundColor(ContextCompat.getColor(holder.binding.root.context, statusColor))
+
+        // Set rounded background
+        val roundedBackground = getRoundedBackgroundDrawable(holder.binding.root.context, statusColor, 8f)
+        holder.binding.tvOrderStatus.background = roundedBackground
+
+
+        holder.binding.kontak.setOnClickListener {
+            val noHp = item?.vendorInfo?.noHp
+            Log.d("VendorOrderDetailsActivity", "Phone number: $noHp")
+            if (noHp != null) {
+                val phoneNumber = if (noHp.startsWith("0")) {
+                    "62" + noHp.substring(1)
+                } else {
+                    noHp
+                }
+                val url = "https://wa.me/$phoneNumber"
+                val intent = Intent(Intent.ACTION_VIEW)
+                intent.data = Uri.parse(url)
+                holder.itemView.context.startActivity(intent)
+            } else {
+                Toast.makeText(holder.itemView.context, "Phone number is not available", Toast.LENGTH_SHORT).show()
+            }
+        }
+
 
     }
+
+    private fun getRoundedBackgroundDrawable(context: Context, colorResId: Int, cornerRadiusDp: Float): GradientDrawable {
+        val color = ContextCompat.getColor(context, colorResId)
+        val cornerRadiusPx = context.resources.displayMetrics.density * cornerRadiusDp
+        return GradientDrawable().apply {
+            shape = GradientDrawable.RECTANGLE
+            setColor(color)
+            cornerRadius = cornerRadiusPx
+        }
+    }
+
 
     override fun getItemCount(): Int {
         return listPesanan.size

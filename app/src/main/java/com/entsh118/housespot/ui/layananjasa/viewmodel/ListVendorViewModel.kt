@@ -65,20 +65,18 @@ class ListVendorViewModel: ViewModel() {
 
 
     fun filterVendors(
-        lokasiKantor: String?,
         tipeLayanan: String?,
         jenisJasa: String?,
-        namaVendor: String?,
         hargaMinimum: Long?,
         hargaMaksimum: Long?
     ) {
         val client = ApiConfig.getClientService().filterVendors(
             tipeLayanan = tipeLayanan,
-            jenisJasa = jenisJasa,
-            namaVendor = namaVendor,
-            hargaMinimum = hargaMinimum,
-            hargaMaksimum = hargaMaksimum
+            jenisJasa = jenisJasa
         )
+
+        Log.d("FILTER", "tipeLayanan: $tipeLayanan, jenisJasa: $jenisJasa, hargaMin: $hargaMinimum, hargaMax: $hargaMaksimum")
+
 
         client.enqueue(object : Callback<List<VendorResponseItem>> {
             override fun onResponse(
@@ -86,7 +84,20 @@ class ListVendorViewModel: ViewModel() {
                 response: Response<List<VendorResponseItem>>
             ) {
                 if (response.isSuccessful) {
-                    _listVendor.value = response.body()
+                    val vendors = response.body()
+                    vendors?.let {
+                        val filteredVendors = it.filter { vendor ->
+                            val feeMinimum = vendor.feeMinimum?.toLong()
+                            when {
+                                hargaMinimum == null && hargaMaksimum == null -> true
+                                hargaMinimum == null && hargaMaksimum != null -> feeMinimum!! <= hargaMaksimum
+                                hargaMaksimum == null && hargaMinimum != null -> feeMinimum!! >= hargaMinimum
+                                else -> feeMinimum in hargaMinimum!!..hargaMaksimum!!
+                            }
+                        }
+
+                        _listVendor.value = filteredVendors
+                    }
                 } else {
                     _error.value = response.message()
                 }

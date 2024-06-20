@@ -88,7 +88,7 @@ class ListVendorActivity : AppCompatActivity() {
             val namaVendor = ""
 
             // Call viewModel to apply filters
-            viewModel.filterVendors(lokasiKantor, tipeLayanan, jenisJasa, namaVendor, hargaMin, hargaMax)
+            viewModel.filterVendors(tipeLayanan, jenisJasa, hargaMin, hargaMax)
 
             bottomSheetDialog.dismiss()
         }

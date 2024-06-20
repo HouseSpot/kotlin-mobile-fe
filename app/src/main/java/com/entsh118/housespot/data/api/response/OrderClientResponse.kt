@@ -40,6 +40,9 @@ data class DataItem(
 	@field:SerializedName("id")
 	val id: String? = null,
 
+	@field:SerializedName("vendor_info")
+	val vendorInfo: VendorInfo? = null,
+
 	@field:SerializedName("startDate")
 	val startDate: String? = null,
 
@@ -48,4 +51,17 @@ data class DataItem(
 
 	@field:SerializedName("status")
 	val status: String? = null
+): Parcelable
+
+@Parcelize
+data class VendorInfo(
+
+	@field:SerializedName("nama")
+	val nama: String? = null,
+
+	@field:SerializedName("no_hp")
+	val noHp: String? = null,
+
+	@field:SerializedName("email")
+	val email: String? = null
 ): Parcelable
