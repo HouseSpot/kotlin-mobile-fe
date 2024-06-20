@@ -58,5 +58,8 @@ data class VendorResponseItem(
 	val lokasiKantor: String? = null,
 
 	@field:SerializedName("jasa_kontraktor")
-	val jasaKontraktor: List<String?>? = null
+	val jasaKontraktor: List<String?>? = null,
+
+	@field:SerializedName("fee_minimum")
+	val feeMinimum: String? = null
 ): Parcelable
